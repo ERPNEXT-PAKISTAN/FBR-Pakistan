@@ -3,7 +3,7 @@
 <br clear="both"/>
 <hr/>
 
-<span style="color: red;"><b>Create the Following Doctype for FBR Fields.</b></span>
+<span style="color: red;"><b>Create the Following Doctype for FBR Fields.</b></span>    
 <span style="color: #007bff;"><b>Create the Following Doctype for FBR Fields.</b></span>
 -----------------------------------------------
 
