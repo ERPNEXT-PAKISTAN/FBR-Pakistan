@@ -1,9 +1,11 @@
 <p float="left">
-  <img src="https://github.com/user-attachments/assets/6605875e-b2ba-4d67-8f5f-c88a5861645f" width="200"/>
-  <img src="https://github.com/user-attachments/assets/37e73f0e-2948-4107-a4b4-d0eb43ea8771" width="200"/>
+  <img src="https://github.com/user-attachments/assets/49a7382a-6308-44aa-b267-2556d8d98798" width="200"/>
+  <img src="https://github.com/user-attachments/assets/6f3c2166-80b9-4109-bd82-60ae2b46edcd" width="200"/>
 </p>
 -------------------------------------------------------------------------------------------
 
+![Digital Inv](https://github.com/user-attachments/assets/6f3c2166-80b9-4109-bd82-60ae2b46edcd)
+![FBR](https://github.com/user-attachments/assets/49a7382a-6308-44aa-b267-2556d8d98798)
 
 ![image](https://github.com/user-attachments/assets/35bca23b-aa26-4d69-b440-ab0d44eea823)
 
