@@ -5,7 +5,7 @@
 
 **Create the Following Doctype for FBR Fields.**
 <hr/>
-
+<hr style="height:2px; background-color:#000; border:none;" />
 ![image](https://github.com/user-attachments/assets/35bca23b-aa26-4d69-b440-ab0d44eea823)
 <hr/>
 
