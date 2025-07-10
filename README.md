@@ -23,3 +23,4 @@
 
 ![image](https://github.com/user-attachments/assets/cb74614a-895a-4104-9a9c-6f3a2b28babc)
 <hr/>
+<hr style="height:4px; background-color:#000; border:none;" />
