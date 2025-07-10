@@ -4,7 +4,7 @@
 <hr/>
 
 **Create the Following Doctype for FBR Fields.**
-________________________________________________
+-----------------------------------------------
 
 ![image](https://github.com/user-attachments/assets/35bca23b-aa26-4d69-b440-ab0d44eea823)
 <hr/>
