@@ -1,3 +1,33 @@
+# Server Script (Python):
+# Your Server Script should have:
+# Doctype: “Sales Invoice”
+# Trigger: Before Save or Before Submit depending on your logic.
+# If you want it to work for Delivery Note too, duplicate this Server Script and set the Doctype to Delivery Note.
+# Doctype: “Delivery Note”
+--------------------------------------
+# Custom Fields Required on Both
+# Make sure these fields are created in both child tables:
+    # custom_sale_tax
+    # custom_further_tax
+    # custom_extra_tax
+    # custom_sales_tax_amount
+    # custom_further_tax_amount
+    # custom_extra_tax_amount
+    # custom_taxs_amount
+    # custom_tax_inclusive
+    # item_tax_template (standard)
+    # amount (standard)
+# So check the child doctype:
+    # Sales Invoice Item
+    # Delivery Note Item
+# They must have these fields.
+---------------------------------------
+# Server Script
+----------------------------------------
+
+
+
+
 for item in doc.items:
     # Reset tax rates and amounts
     item.custom_sale_tax = 0  # ← updated name
