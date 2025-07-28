@@ -1,0 +1,43 @@
+Invoice Type,Tax Payer Type,Sale Type,Buyer Province,SRO Schedule No.,SRO Item SNo.,HS Code,UOM,,Scenario ID,Scenario Detail
+,,,,,,,,,,
+Sale Invoice,Registered,Goods at standard rate (default),AZAD JAMMU AND KASHMIR,237(I)/2020,81,3005.101,KG,,SN001,Goods at Standard Rate to Registered Buyers
+Credit Note,Unregistered,Goods at Reduced Rate,BALOCHISTAN,327(I)/2008,82,3005.109,Meter,,SN002,Goods at Standard Rate to Unregistered Buyers
+Debit Note,Unregistered Distributor,Goods at zero-rate,CAPITAL TERRITORY,3rd Schd Table II,Region-I,3005.901,Liter,,SN003,Sale of Steel (Melted and Re-Rolled)
+STWH,Retail Consumer,Petroleum Products,GILGIT BALTISTAN,495(I)/2016,Region-II,3005.909,,,SN004,Sale by Ship Breakers
+,,Electricity Supply to Retailers,KHYBER PAKHTUNKHWA,587(I)/2017,1(i)(a),,,,SN005,Reduced Rate Sale
+,,SIM,PUNJAB,590(I)/2017,112J(viii)(a),,,,SN006,Exempt Goods Sale
+,,Gas to CNG stations,SINDH,6th Schd Table I,27(vii),,,,SN007,Zero Rated Sale
+,,Mobile Phones,FATA/PATA,6th Schd Table II,53(ix),,,,SN008,Sale of 3rd Schedule Goods
+,,Rerollable scrap by ship breakers,,6th Schd Table III,,,,,SN009,Cotton Spinners Purchase from Cotton Ginners (Textile Sector)
+,,Processing/Conversion of Goods,,EIGHTH SCHEDULE Table 1,,,,,SN010,Mobile Operators Add Sales (Telecom Sector)
+,,3rd Schedule Goods,,EIGHTH SCHEDULE Table 2,,,,,SN011,Toll Manufacturing Sale by Steel Sector
+,,Goods (FED in ST Mode),,FIFTH SCHEDULE,,,,,SN012,Sale of Petroleum products
+,,Services (FED in ST Mode),,1450(I)/2021,,,,,SN013,Electricity Supply to Retailers
+,,Services,,NINTH SCHEDULE,,,,,SN014,Sale of Gas to CNG Stations
+,,Exempt goods,,1450(I)/2021,,,,,SN015,Sale of Mobile Phones
+,,DTRE goods,,1579 (1)/2021,,,,,SN016,Processing / Conversion of Goods
+,,Cotton ginners,,1604(I)/2021,,,,,SN017,Sale of Goods where FED is Charged in ST Mode
+,,Electric Vehicle,,01(I)/2022,,,,,SN018,Sale of Services where FED is Charged in ST Mode
+,,Cement /Concrete Block,,88(I)/2022,,,,,SN019,Sale of Services
+,,Telecommunication services,,183(I)/2022,,,,,SN020,Sale of Electric Vehicles
+,,Steel melting and re-rolling,,SECTION 49,,,,,SN021,Sale of Cement /Concrete Block
+,,Ship breaking,,Section 4(b),,,,,SN022,Sale of Potassium Chlorate
+,,Potassium Chlorate,,ICTO,,,,,SN023,Sale of CNG
+,,Non-Adjustable Supplies,,ICTO TABLE I,,,,,SN024,Goods Sold that are Listed in SRO 297(1)/2023
+,,Goods as per SRO.297(|)/2023,,ICTO TABLE II,,,,,SN025,Drugs Sold at Fixed ST Rate Under Serial 81 of Eighth Schedule Table 1
+,,CNG Sales,,321(I)/2022,,,,,SN026,Sale to End Consumer by Retailers
+,,Toll Manufacturing,,1212(I)/2018,,,,,SN027,Sale to End Consumer by Retailers
+,,,,1636(1)/2022,,,,,SN028,Sale to End Consumer by Retailers
+,,,,178(I)/2023,,,,,,
+,,,,179(I)/2023,,,,,,
+,,,,297(I)/2023-Table-I,,,,,,
+,,,,297(I)/2023-Table-II,,,,,,
+,,,,581(1)/2024,,,,,,
+,,,,3rd Schedule goods,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+Sales Invoice,Sales Invoice,Sales Invoice,Sales Invoice,Sales Invoice,Sales Invoice,Sales Invoice,Sales Invoice,,Sales Invoice,
+,Customers,,Customers,Item Table,Item Table,Item Table,Item Table,,,
