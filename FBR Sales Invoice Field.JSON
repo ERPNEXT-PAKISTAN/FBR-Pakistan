@@ -1,0 +1,39 @@
+{
+  "invoiceType": "{{ doc.custom_invoice_type }}",
+  "invoiceDate": "{{ doc.posting_date }}",
+  "sellerNTNCNIC": "{{ doc.company_tax_id or '' }}",
+  "sellerBusinessName": "{{ doc.company }}",
+  "sellerProvince": "{{ ((doc.company_address_display or '').split('<br>')[2] | trim).rstrip(',') }}",
+  "sellerAddress": "{{ ((doc.company_address_display or '').split('<br>')[0] | trim).rstrip(',') }}, {{ ((doc.company_address_display or '').split('<br>')[1] | trim).rstrip(',') }}",
+  "buyerNTNCNIC": "{{ doc.tax_id }}",
+  "buyerBusinessName": "{{ doc.customer }}",
+  "buyerProvince": "{{ (doc.address_display or '').split('<br>')[2] | replace('\n', '') | trim }}",
+  "buyerAddress": "{{ (doc.address_display or '').split('<br>')[0].strip().rstrip(',') }}, {{ (doc.address_display or '').split('<br>')[1].strip().rstrip(',') }}",
+  "buyerRegistrationType": "{{ doc.custom_tax_payer_type }}",
+  "invoiceRefNo": "{{ doc.name }}",
+  "scenarioId": "{{doc.custom_scenario_id}}",
+  "items": [
+    {% for item in doc.get("items") %}
+    {
+      "hsCode": "{{ item.custom_hs_code or '' }}",
+      "productDescription": "{{ item.item_name.replace('"', '\\\"') }}",
+      "uoM": "{{ item.custom_fbr_uom or '' }}",
+      "quantity": {{ '%.2f'|format(item.qty) }},
+      "totalValues": {{ '%.2f'|format(item.custom_tax_inclusive_amount or 0) }},
+      "valueSalesExcludingST": {{ '%.2f'|format(item.amount) }},
+      "fixedNotifiedValueOrRetailPrice": {{ '%.2f'|format(item.rate) }},
+      "salesTaxWithheldAtSource": 0,
+      "extraTax": {{ '%.2f'|format(item.custom_extra_tax or 0) }},
+      "furtherTax": {{ '%.2f'|format(item.custom_further_tax or 0) }},
+      "sroScheduleNo": "{{ item.custom_sro_schedule_no or '' }}",
+      "fedPayable": 0,
+      "discount": 0,
+      "saleType": "{{ item.custom_sale_type or '' }}",
+      "sroItemSerialNo": "{{ item.custom_sro_item_sno or '' }}",
+      "rate": "{{ '%.2f'|format(item.custom_sales_tax_rate or 0) }}%",
+      "salesTaxApplicable": {{ '%.2f'|format(item.custom_total_tax_amount or 0) }}
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+  
+}
