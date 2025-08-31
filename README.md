@@ -42,6 +42,7 @@
 <hr/>
 <img width="1247" height="645" alt="image" src="https://github.com/user-attachments/assets/d12b7af1-84a6-4626-b99d-d856264e27cb" />
 <hr/>
-<img width="1561" height="914" alt="image" src="https://github.com/user-attachments/assets/2be3d33b-bbe5-4817-b88c-695f31ea9f76" />
+<img width="1550" height="853" alt="image" src="https://github.com/user-attachments/assets/f0832aa1-d7ec-401e-99ac-e3525a951950" />
+
 
 <hr style="height:1px; background-color:#000; border:none;" />
