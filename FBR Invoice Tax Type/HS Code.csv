@@ -671,7 +671,7 @@ sugar or other sweetening matter."
 0409.0000,Natural honey.
 0410.0000,"Edible products of animal origin, not
 elsewhere specified or included."
-"Products of animal origin, not elsewhere specified or included
+05, "Products of animal origin, not elsewhere specified or included
 Notes.
 1.- This Chapter does not cover :
 (a) Edible products (other than guts, bladders and stomachs of
@@ -1658,7 +1658,7 @@ frozen, other than products of heading 20.06."
 2005.9900, Other
 2006.0000,"Vegetables, fruit, nuts, fruitpeel and other
 parts of plants, preserved by sugar (drained,
-glacé or crystallised)."
+glacÃ© or crystallised)."
 20.07,"Jams, fruit jellies, marmalades, fruit or nut
 puree and fruit or nut pastes, obtained by
 cooking, whether or not containing added
@@ -1795,7 +1795,7 @@ flavoured with plants or aromatic substances."
 2205.1000,In containers holding 2 l or less
 2205.9000,Other
 2206.0000,"Other fermented beverages (for example,
-cider, perry, mead, saké); mixtures of
+cider, perry, mead, sakÃ©); mixtures of
 fermented beverages and mixtures of
 fermented beverages and nonalcoholic
 beverages, not elsewhere specified or
@@ -5298,18 +5298,18 @@ made paper and paperboard."
 for photosensitive, heatsensitive or electro-
 sensitive paper or paperboard"
 4802.4000,Wallpaper base
-4802.5400, Weighing less than 40 g/ m²
+4802.5400, Weighing less than 40 g/ mÂ²
 4802.5510, Printing paper
 4802.5520, Poster paper
 4802.5530, Graph paper
 4802.5540, Bond paper
 4802.5590, Other
-4802.5600," Weighing 40 g/ m² or more but not more than
-150 g/ m², in sheets with one side not exceeding
+4802.5600," Weighing 40 g/ mÂ² or more but not more than
+150 g/ mÂ², in sheets with one side not exceeding
 435 mm and the other side not exceeding
 297mm in the unfolded state"
-4802.5700," Other, weighing 40 g/ m² or more but not more
-than 150 g/ m²"
+4802.5700," Other, weighing 40 g/ mÂ² or more but not more
+than 150 g/ mÂ²"
 4802.5810, Art paper
 4802.5830, Card board
 4802.5850, Art card
@@ -5355,8 +5355,8 @@ Chapter."
 4805.1100, Semi-chemical fluting paper
 4805.1200, Straw fluting paper
 4805.1900, Other
-4805.2400, Weighing 150 g/ m² or less
-4805.2500, Weighing more than 150 g/ m²
+4805.2400, Weighing 150 g/ mÂ² or less
+4805.2500, Weighing more than 150 g/ mÂ²
 4805.3000,Sulphite wrapping paper
 4805.4000,Filter paper and paperboard
 4805.5000,Felt paper and paperboard
@@ -6552,7 +6552,7 @@ felt, not tufted or flocked, whether or not
 made up."
 5704.1000,"Tiles, having a maximum surface area of 0.3 m2"
 5704.2000,"Tiles, having a maximum surface area
-exceeding 0.3 m2 but not exceeding 1 m²"
+exceeding 0.3 m2 but not exceeding 1 mÂ²"
 5704.9000,Other
 5705.0000,"Other carpets and other textile floor
 coverings, whether or not made up."
@@ -6882,7 +6882,7 @@ crocheted."
 6107.9100, Of cotton
 6107.9900, Of other textile materials
 61.08,"Women's or girls' slips, petticoats, briefs,
-panties, nightdresses, pyjamas, négligés,
+panties, nightdresses, pyjamas, nÃ©gligÃ©s,
 bathrobes, dressing gowns and similar
 articles, knitted or crocheted."
 6108.1100, Of man-made fibres
@@ -7743,7 +7743,7 @@ purposes (other than that of heading 70.10 or
 7013.4100, Of lead crystal
 7013.4200," Of glass having a linear coefficient of
 expansion not exceeding 5x10-6 per Kelvin
-within a temperature range of 0 °C to 300 °C"
+within a temperature range of 0 Â°C to 300 Â°C"
 7013.4900, Other
 7013.9100, Of lead crystal
 7013.9900, Other
@@ -9324,8 +9324,8 @@ welding"
 8311.3000,"Coated rods and cored wire, of base metal, for
 soldering, brazing or welding by flame"
 8311.9000,Other
-"5.- (A) For the purposes of heading 84.71, the expression “automatic data processing
-machines” means machines capable of :",
+"5.- (A) For the purposes of heading 84.71, the expression Â“automatic data processing
+machinesÂ” means machines capable of :",
 (B),
 (C),
 2 -,
@@ -12131,7 +12131,7 @@ headings 8701.2090, 8704.2219, 8704.2299 and
 for vehicles of heading 87.02 and sub headings
 8701.2020, 8701.2090, 8701.2040, 8704.2219,
 8704.2299 and 8704.2390"
-8708.5020," (1) Built up drive axles for vehicles of sub –
+8708.5020," (1) Built up drive axles for vehicles of sub Â–
 heading 8703.2115 and 8704.3150
 (2) Drive shafts for axle, drive shaft housing and
 breathing pipe for vehicles of sub heading
@@ -13674,3 +13674,4 @@ years."
 9938,
 9939,
 9940,
+
