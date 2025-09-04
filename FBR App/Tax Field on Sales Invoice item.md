@@ -1,8 +1,8 @@
-## 🔹 Create Doctype for FBR Data
+## 🔹 Create Tax Field on Sales Invoice item :
 
 ---
 
-### 🏷️ List of Doctype
+### 🏷️ Tax Fields :
 
 
 |     Field Label         |  Field Name                    |     Doctype Name      |
@@ -27,33 +27,30 @@
 Sales Tax Rate
 ```
 ```
-HS Code Description
+Further Tax Rate
 ```
 ```
-Scenario ID
+Extra Tax Rate
 ```
 ```
-Scenario Detail
+Other Tax 1 Rate
 ```
 ```
-BR UoM
+Other Tax 1
 ```
 ```
-SRO Item SNo
+Sales Tax
 ```
 ```
-SRO Schedule No
+Further Tax
 ```
 ```
-Sale Type
+Extra Tax
 ```
 ```
-Tax Payer Type
+Total Tax Amount
 ```
 ```
-Invoice Type     
-```
-```
-Buyer Province
+Tax Inclusive Amount    
 ```
 ---
