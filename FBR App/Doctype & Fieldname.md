@@ -1,8 +1,8 @@
-# 🔹 Create Doctype for FBR Data
+## 🔹 Create Doctype for FBR Data
 
 ---
 
-### 🏷️ Doctype
+### 🏷️ List of Doctype
 
 
 | Field Name         |  Field Name             | Doctype Name          |
@@ -18,6 +18,26 @@
 | Buyer Province     |                         | Buyer Province        |
 
 
+---
+
+# 🔹 Doctype Column Values (with Copy Options)
+
+| Field Name      | Field Name Description   | Doctype Name     | Copy Option |
+|-----------------|-------------------------|------------------|-------------|
+| HS Code         | HS Code Description     | HS Code          | `HS Code`<br>`HS Code Description`<br>`HS Code` |
+| Scenario ID     | Scenario Detail         | Scenario ID      | `Scenario ID`<br>`Scenario Detail`<br>`Scenario ID` |
+| FBR UoM         |                         | FBR UoM          | `FBR UoM` |
+| SRO Item SNo    |                         | SRO Item SNo     | `SRO Item SNo` |
+| SRO Schedule No |                         | SRO Schedule No  | `SRO Schedule No` |
+| Sale Type       |                         | Sale Type        | `Sale Type` |
+| Tax Payer Type  |                         | Tax Payer Type   | `Tax Payer Type` |
+| Invoice Type    |                         | Invoice Type     | `Invoice Type` |
+| Buyer Province  |                         | Buyer Province   | `Buyer Province` |
+
+---
+
+**Tip:**  
+Click or copy the value(s) in the "Copy Option" column for use in your Doctype setup.
 
 
 ---
