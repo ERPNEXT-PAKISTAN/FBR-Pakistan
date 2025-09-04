@@ -5,17 +5,17 @@
 ### 🏷️ List of Doctype
 
 
-| Field Name         |  Field Name             | Doctype Name          |
-|--------------------|-------------------------|-----------------------|
-| HS Code            | HS Code Description     | HS Code               |
-| Scenario ID        | Scenario Detail         | Scenario ID           |
-| FBR UoM            |                         | FBR UoM               |
-| SRO Item SNo       |                         | SRO Item SNo          |
-| SRO Schedule No    |                         | SRO Schedule No       |
-| Sale Type          |                         | Sale Type             |
-| Tax Payer Type     |                         | Tax Payer Type        |
-| Invoice Type       |                         | Invoice Type          |
-| Buyer Province     |                         | Buyer Province        |
+| Field Name         |  Field Name             | Doctype Name          |  Naming/Naming Rule |                    Auto Name                |
+|--------------------|-------------------------|-----------------------|---------------------|---------------------------------------------|
+| HS Code            | HS Code Description     | HS Code               | By Fieldname        | `format:{hs_code} - {hs_code_description}`                           |
+| Scenario ID        | Scenario Detail         | Scenario ID           | Expression          | `format:{scenario_id} - {scenario_detail}`  |
+| FBR UoM            |                         | FBR UoM               | By Fieldname        | `field:fbr_uom`                             |
+| SRO Item SNo       |                         | SRO Item SNo          | By Fieldname        |
+| SRO Schedule No    |                         | SRO Schedule No       | By Fieldname        |
+| Sale Type          |                         | Sale Type             | By Fieldname        |
+| Tax Payer Type     |                         | Tax Payer Type        | By Fieldname        |
+| Invoice Type       |                         | Invoice Type          | By Fieldname        |
+| Buyer Province     |                         | Buyer Province        | By Fieldname        |
 
 
 ### 🏷️| Doctype Name & Field Name
