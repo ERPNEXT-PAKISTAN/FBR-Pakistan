@@ -17,6 +17,17 @@
 | Invoice Type       |                         | Invoice Type          | By Fieldname        | `field:invoice_type`                        |
 | Buyer Province     |                         | Buyer Province        | By Fieldname        | `field:buyer_province`                      |
 
+---
+
+
+### ⚙️ Settings For Import Data:
+
+| Setting      | Details                          |  Tool   |    Check   |
+|--------------|----------------------------------|---------|-------------|
+| Form Setting | Allow Import (via Import Tool)   |         | ✅ Enabled |
+| Permissions  | System Manager                   | Import  | ✅ Enabled |
+
+---
 
 ### 🏷️| Doctype Name & Field Name
 ---
@@ -54,46 +65,4 @@ Invoice Type
 ```
 Buyer Province
 ```
----
-
-
-### ⚙️ Settings
-
-| Setting      | Details                          |  Tool   |    Check   |
-|--------------|----------------------------------|---------|-------------|
-| Form Setting | Allow Import (via Import Tool)   |         | ✅ Enabled |
-| Permissions  | System Manager                   | Import  | ✅ Enabled |
-
----
-
-### ⚙️ Naming
-
-| Setting      | Details        | Field Name            |
-|--------------|---------------|-----------------------|
-| Naming Rule  | By fieldname  | hs_code               |
-| Auto Name    | field:        | hs_code_description   |
-
----
-
-### ⚙️ Naming (Expanded)
-
-| Naming Rule          | Auto Name            | Doctype   |
-|----------------------|----------------------|-----------|
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-| By fieldname         | hs_code              |           |
-| field:               | hs_code_description  |           |
-
 ---
