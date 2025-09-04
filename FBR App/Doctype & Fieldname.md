@@ -18,29 +18,38 @@
 | Buyer Province     |                         | Buyer Province        |
 
 
+### 🏷️| Field Name
 ---
 
-# 🔹 Doctype Column Values (with Copy Options)
-
-| Field Name      | Field Name Description   | Doctype Name     | Copy Option |
-|-----------------|-------------------------|------------------|-------------|
-| HS Code         | HS Code Description     | HS Code          | `HS Code`<br>`HS Code Description`<br>`HS Code` |
-| Scenario ID     | Scenario Detail         | Scenario ID      | `Scenario ID`<br>`Scenario Detail`<br>`Scenario ID` |
-| FBR UoM         |                         | FBR UoM          | `FBR UoM` |
-| SRO Item SNo    |                         | SRO Item SNo     | `SRO Item SNo` |
-| SRO Schedule No |                         | SRO Schedule No  | `SRO Schedule No` |
-| Sale Type       |                         | Sale Type        | `Sale Type` |
-| Tax Payer Type  |                         | Tax Payer Type   | `Tax Payer Type` |
-| Invoice Type    |                         | Invoice Type     | `Invoice Type` |
-| Buyer Province  |                         | Buyer Province   | `Buyer Province` |
-
+```
+ HS Code 
+```
+```
+Scenario ID
+```
+```
+BR UoM
+```
+```
+SRO Item SNo
+```
+```
+SRO Schedule No
+```
+```
+Sale Type
+```
+```
+Tax Payer Type
+```
+```
+Invoice Type     
+```
+```
+Buyer Province
+```
 ---
 
-**Tip:**  
-Click or copy the value(s) in the "Copy Option" column for use in your Doctype setup.
-
-
----
 
 ### ⚙️ Settings
 
