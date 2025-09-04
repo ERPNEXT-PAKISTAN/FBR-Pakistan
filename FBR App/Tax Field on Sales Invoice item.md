@@ -5,41 +5,17 @@
 ### 🏷️ List of Doctype
 
 
-| Field Name         |  Field Name             | Doctype Name          |  Naming/Naming Rule |                    Auto Name                |
-|--------------------|-------------------------|-----------------------|---------------------|---------------------------------------------|
-| HS Code            | HS Code Description     | HS Code               | Expression          | `format:{hs_code} - {hs_code_description}`  |
-| Scenario ID        | Scenario Detail         | Scenario ID           | Expression          | `format:{scenario_id} - {scenario_detail}`  |
-| FBR UoM            |                         | FBR UoM               | By Fieldname        | `field:fbr_uom`                             |
-| SRO Item SNo       |                         | SRO Item SNo          | By Fieldname        | `field:sro_item_sno`                        |
-| SRO Schedule No    |                         | SRO Schedule No       | By Fieldname        | `field:sro_schedule_no`                     |
-| Sale Type          |                         | Sale Type             | By Fieldname        | `field:sale_type`                           |
-| Tax Payer Type     |                         | Tax Payer Type        | By Fieldname        | `field:tax_payer_type`                      |
-| Invoice Type       |                         | Invoice Type          | By Fieldname        | `field:invoice_type`                        |
-| Buyer Province     |                         | Buyer Province        | By Fieldname        | `field:buyer_province`                      |
+| Field Label             |  Field Name                    |     Doctype Name      |
+|-------------------------|--------------------------------|-----------------------|
+| Sales Tax Rate          | custom_sales_tax_rate          |                       |
+| Sales Tax Rate          | custom_further_tax_rate        |                       |
+| Sales Tax Rate          | custom_extra_tax_rate          |                       |
+| Sales Tax Rate          | custom_sales_tax               |                       |
+| Sales Tax Rate          | custom_further_tax             |                       |
+| Sales Tax Rate          | custom_extra_tax               |                       |
+| Sales Tax Rate          | total_tax_amount               |                       |
+| Sales Tax Rate          | tax_inclusive_amount           |                       |
 
----
-
-    # Reset tax values
-custom_sales_tax_rate = 0
-custom_further_tax_rate = 0
-custom_extra_tax_rate = 0
-custom_sales_tax = 0
-custom_further_tax = 0
-custom_extra_tax = 0
-total_tax_amount = 0
-tax_inclusive_amount = 0
-
-
-
-
-
-
-### ⚙️ Settings For Import Data:
-
-| Setting      | Details                          |  Tool   |    Check   |
-|--------------|----------------------------------|---------|-------------|
-| Form Setting | Allow Import (via Import Tool)   |         | ✅ Enabled |
-| Permissions  | System Manager                   | Import  | ✅ Enabled |
 
 ---
 
