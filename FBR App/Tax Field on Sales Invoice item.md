@@ -5,7 +5,7 @@
 ### 🏷️ List of Doctype
 
 
-| Field Label             |  Field Name                    |     Doctype Name      |
+|     Field Label         |  Field Name                    |     Doctype Name      |
 |-------------------------|--------------------------------|-----------------------|
 | Sales Tax Rate          | custom_sales_tax_rate          |                       |
 | Sales Tax Rate          | custom_further_tax_rate        |                       |
