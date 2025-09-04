@@ -25,7 +25,13 @@
  HS Code 
 ```
 ```
+HS Code Description
+```
+```
 Scenario ID
+```
+```
+Scenario Detail
 ```
 ```
 BR UoM
