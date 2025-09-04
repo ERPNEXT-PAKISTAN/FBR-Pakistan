@@ -53,11 +53,10 @@ Buyer Province
 
 ### ⚙️ Settings
 
-| Setting      | Details                          |         |           |
-|--------------|----------------------------------|---------|-----------|
+| Setting      | Details                          |  Tool   |    Check   |
+|--------------|----------------------------------|---------|-------------|
 | Form Setting | Allow Import (via Import Tool)   |         | ✅ Enabled |
 | Permissions  | System Manager                   | Import  | ✅ Enabled |
-| Naming       | By fieldname                     |         |           |
 
 ---
 
