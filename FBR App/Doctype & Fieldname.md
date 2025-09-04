@@ -18,7 +18,7 @@
 | Buyer Province     |                         | Buyer Province        |
 
 
-### 🏷️| Field Name
+### 🏷️| Doctype Name & Field Name
 ---
 
 ```
