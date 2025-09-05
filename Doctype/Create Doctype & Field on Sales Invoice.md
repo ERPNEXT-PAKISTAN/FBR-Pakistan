@@ -54,7 +54,7 @@
  HS Code 
 ```
 ```
-HS Code Description
+HS Code Detail
 ```
 ```
 Scenario ID
