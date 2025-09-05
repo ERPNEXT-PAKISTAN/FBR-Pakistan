@@ -14,19 +14,19 @@ Follow these steps to set up the FBR Integration app in your ERPNext bench:
 
 ---
 
-### 🏁 **Step 1: Create the App inside your Bench**
+### 🏁 **Step 1️⃣: Create the App inside your Bench**
 ```bash
 bench new-app fbr_integration
 ```
 ---
 
-### ⚙️ **Step 2: Install the App on Your Site**
+### ⚙️ **Step 2️⃣: Install the App on Your Site**
 ```bash
 bench --site site1.local install-app fbr_integration
 ```
 ---
 
-### 🔄 **Step 3: Migrate & Restart Bench**
+### 🔄 **Step 3️⃣: Migrate & Restart Bench**
 ```bash
 bench migrate && bench restart
 ```
@@ -52,6 +52,7 @@ bench migrate && bench restart
 ### 📥 Download & Upload Excel Data  
 [![Excel Icon](https://img.icons8.com/fluency/24/000000/ms-excel.png)](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Invoice%20Tax%20Type)  
 **Download Excel Data and Upload into Doctype:**  
+https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data
 [Go to FBR Invoice Tax Type »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Invoice%20Tax%20Type)
 
 ---
