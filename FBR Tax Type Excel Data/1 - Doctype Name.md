@@ -4,8 +4,8 @@
 
 ---
 
-| 🏷️ **Field Name**       | 📝 **Field Name**          |  🗂️ **Example / Icon**     |
-|-------------------------|--------------------------------------------|----------------------------|
+| 🏷️ **Field Name**       | 📝 **Field Name**      |  🗂️ **DocType**           |
+|-------------------------|-------------------------|--------------------------- |
 | **HS Code**             |  HS Code Detail         | 🏷️ `HS Code`               |
 | **HS Code Description** |  Scenario Detail        | 📄 `HS Code Description`   |
 | **Scenario ID**         |                         | 🆔 `Scenario ID`           |
