@@ -7,7 +7,7 @@
 
 | Field Name         |  Field Name             |   Type        |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
 |--------------------|-------------------------|---------------|-------------------------|------------------------|---------------------------------------------|
-| HS Code            | HS Code Description     |  Data         |   HS Code               | Expression             | `format:{hs_code} - {hs_code_description}`  |
+| HS Code            | HS Code Description     |  Float         |   HS Code               | Expression             | `format:{hs_code} - {hs_code_description}`  |
 | Scenario ID        | Scenario Detail         |  Data         |   Scenario ID           | Expression             | `format:{scenario_id} - {scenario_detail}`  |
 | FBR UoM            |                         |  Data         |   FBR UoM               | By Fieldname           | `field:fbr_uom`                             |
 | SRO Item SNo       |                         |  Data         |   SRO Item SNo          | By Fieldname           | `field:sro_item_sno`                        |
