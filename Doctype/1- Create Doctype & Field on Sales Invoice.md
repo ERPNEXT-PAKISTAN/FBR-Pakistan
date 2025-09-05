@@ -1,10 +1,10 @@
 ## 🔹 Create Doctype for FBR Data
 
 ---
-### 1️⃣ Create From `Copy to Clipboard` 
-🔗 https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/Doctype
-OR
-### 2️⃣ Create Doctype Step by Step:
+### 1️⃣ Create From `Copy to Clipboard`  
+🔗 https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/Doctype   
+
+### 2️⃣ Create Doctype Step by Step:   
 ---
 
 ### 1️⃣📑🏗️ Create Doctype Step by Step:
