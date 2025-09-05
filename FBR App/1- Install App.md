@@ -50,10 +50,9 @@ bench migrate && bench restart
 ---
 
 ### 📥 Download & Upload Excel Data  
-[![Excel Icon](https://img.icons8.com/fluency/24/000000/ms-excel.png)](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Invoice%20Tax%20Type)  
+[![Excel Icon](https://img.icons8.com/fluency/24/000000/ms-excel.png)](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)  
 **Download Excel Data and Upload into Doctype:**  
-https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data
-[Go to FBR Invoice Tax Type »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Invoice%20Tax%20Type)
+[Go to FBR Invoice Tax Type »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)
 
 ---
 
