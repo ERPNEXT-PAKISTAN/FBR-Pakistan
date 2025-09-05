@@ -1,4 +1,4 @@
-## 🔹 Create Doctype for FBR Data
+## 🔹 Create Doctype & Field on Sales Invoice for FBR Data
 
 ---
 
@@ -16,6 +16,16 @@
 | Tax Payer Type     |                         | Tax Payer Type        | By Fieldname        | `field:tax_payer_type`                      |
 | Invoice Type       |                         | Invoice Type          | By Fieldname        | `field:invoice_type`                        |
 | Buyer Province     |                         | Buyer Province        | By Fieldname        | `field:buyer_province`                      |
+
+---
+
+
+### ⚙️ Settings For Import Data:
+
+| Setting         | Details                          |  Tool      |    Check    |
+|-----------------|----------------------------------|------------|-------------|
+| Form Setting    | Allow Import (via Import Tool)   |            | ✅ Enabled  |
+| Permissions     | System Manager                   | Import     | ✅ Enabled  |
 
 ---
 
@@ -38,14 +48,6 @@
 
 ---
 
-### ⚙️ Settings For Import Data:
-
-| Setting      | Details                          |  Tool   |    Check   |
-|--------------|----------------------------------|---------|-------------|
-| Form Setting | Allow Import (via Import Tool)   |         | ✅ Enabled |
-| Permissions  | System Manager                   | Import  | ✅ Enabled |
-
----
 
 ### 🏷️| Doctype Name & Field Name
 ---
