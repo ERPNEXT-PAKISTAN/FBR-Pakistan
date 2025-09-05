@@ -7,7 +7,7 @@
 
 | Field Name         |  Field Name             |   Type        |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
 |--------------------|-------------------------|---------------|-------------------------|------------------------|---------------------------------------------|
-| HS Code            | HS Code Description     |  Float         |   HS Code               | Expression             | `format:{hs_code} - {hs_code_description}`  |
+| HS Code            | HS Code Detail          |  Float        |   HS Code               | Expression             | `format:{hs_code} - {hs_code_detail}`  |
 | Scenario ID        | Scenario Detail         |  Data         |   Scenario ID           | Expression             | `format:{scenario_id} - {scenario_detail}`  |
 | FBR UoM            |                         |  Data         |   FBR UoM               | By Fieldname           | `field:fbr_uom`                             |
 | SRO Item SNo       |                         |  Data         |   SRO Item SNo          | By Fieldname           | `field:sro_item_sno`                        |
@@ -19,7 +19,25 @@
 
 ---
 
+### 🏷️ List of Doctype
 
+
+| Field Name           |  Field Name             |   Type        |     Option          |    Fetch From              |  Select Field       |   
+|----------------------|-------------------------|---------------|---------------------|----------------------------|---------------------|
+| HS Code              |                         |  Data         |                     |                            |                     | 
+| HS Code Detail       |                         |  Link         |  HS Code            | 
+| Scenario ID          |                         |  Link         |  Scenario ID        |                            |                     |    
+| Scenario Detail      |                         |  Data         |                     | custom_scenario_details    | Senario ID (Data)   |   
+| FBR UoM              |                         |  Link         |  FBR UoM            |                            | 
+| SRO Item SNo         |                         |  Link         |  SRO Item SNo       |                            | 
+| SRO Schedule No      |                         |  Link         |  SRO Schedule No    |                            |
+| Sale Type            |                         |  Link         |  Sale Type          |                            | 
+| Tax Payer Type       |                         |  Link         |  Tax Payer Type     |                            |
+| Invoice Type         |                         |  Link         |  Invoice Type       |                            | 
+| Buyer Province       |                         |  Link         |  Buyer Province     |                            | 
+
+
+---
 ### ⚙️ Settings For Import Data:
 
 | Setting      | Details                          |  Tool   |    Check      |
