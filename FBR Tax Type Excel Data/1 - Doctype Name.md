@@ -24,8 +24,8 @@
 
 | 🏷️ **Field Name**     | 📝 **Field Name**      |  🗂️ **DocType**            |
 |-----------------------|-------------------------|--------------------------- |
-| *HS Code*             |  HS Code Detail         | 🏷️ `HS Code`               |
-| *Scenario ID*         |  Scenario Detail        | 🆔 `Scenario ID`           |
+| *HS Code*             |  *HS Code Detail*       | 🏷️ `HS Code`               |
+| *Scenario ID*         |  *Scenario Detail*      | 🆔📄 `Scenario ID`         |
 | *FBR UoM*             |                         | 📏 `FBR UoM`               |
 | *SRO Item SNo*        |                         | 🔢 `SRO Item SNo`          |
 | *SRO Schedule No*     |                         | 📅 `SRO Schedule No`       |
