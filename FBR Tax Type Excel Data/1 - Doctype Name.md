@@ -4,19 +4,19 @@
 
 ---
 
-| 🏷️ **Field Name**       | 📝 **Field Description / Detail**          |  🗂️ **Example / Icon**     |
+| 🏷️ **Field Name**       | 📝 **Field Name**          |  🗂️ **Example / Icon**     |
 |-------------------------|--------------------------------------------|----------------------------|
-| **HS Code**             | Harmonized System Code for items           | 🏷️ `HS Code`               |
-| **HS Code Description** | Description of the HS code                 | 📄 `HS Code Description`   |
-| **Scenario ID**         | Unique ID for scenario                     | 🆔 `Scenario ID`           |
-| **Scenario Detail**     | Description of the scenario                | 📄 `Scenario Detail`       |
-| **FBR UoM**             | FBR Unit of Measure                        | 📏 `FBR UoM`               |
-| **SRO Item SNo**        | Serial Number in SRO item                  | 🔢 `SRO Item SNo`          |
-| **SRO Schedule No**     | Schedule Number as per SRO                 | 📅 `SRO Schedule No`       |
-| **Sale Type**           | Type of sale (e.g., local, export)         | 🛒 `Sale Type`             |
-| **Tax Payer Type**      | Type of taxpayer                           | 👤 `Tax Payer Type`        |
-| **Invoice Type**        | Type of invoice (e.g., commercial, retail) | 🧾 `Invoice Type`          |
-| **Buyer Province**      | Province of the buyer                      | 🏢 `Buyer Province`        |
+| **HS Code**             |  HS Code Detail         | 🏷️ `HS Code`               |
+| **HS Code Description** |  Scenario Detail        | 📄 `HS Code Description`   |
+| **Scenario ID**         |                         | 🆔 `Scenario ID`           |
+| **Scenario Detail**     |                         | 📄 `Scenario Detail`       |
+| **FBR UoM**             |                         | 📏 `FBR UoM`               |
+| **SRO Item SNo**        |                         | 🔢 `SRO Item SNo`          |
+| **SRO Schedule No**     |                         | 📅 `SRO Schedule No`       |
+| **Sale Type**           |                         | 🛒 `Sale Type`             |
+| **Tax Payer Type**      |                         | 👤 `Tax Payer Type`        |
+| **Invoice Type**        |                         | 🧾 `Invoice Type`          |
+| **Buyer Province**      |                         | 🏢 `Buyer Province`        |
 
 ---
 
