@@ -2,7 +2,7 @@
 
 ---
 
-### 🏷️ List of Doctype
+### 1️⃣📑🏗️ List of Doctype
 
 
 | Field Name         |  Field Name             |   Type        |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
@@ -29,7 +29,7 @@
 ---
 ---
 
-### 🏷️ Create Field on Sales Invoice :
+### 2️⃣📑🏗️ 🏷️ Create Field on Sales Invoice :
 
 
 | Field Name           |  Field Name             |   Type    |     Option          |    Fetch From              |  Select Field       |   
@@ -50,7 +50,7 @@
 ---
 ---
 
-### 🏷️ FBR Response
+### 3️⃣🎯📑🏷️ FBR Response
 
 
 | Field Name                      |  Field Name                          |    Data Type          | 
@@ -69,7 +69,7 @@
 
 ---
 ---
-### 🏷️| Doctype Name & Field Name
+### 🏷️💡📑| Doctype Name & Field Name
 ---
 
 ```
