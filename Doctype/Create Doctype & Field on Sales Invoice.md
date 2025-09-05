@@ -19,22 +19,22 @@
 
 ---
 
-### 🏷️ List of Doctype
+### 🏷️ Create Field on Sales Invoice :
 
 
-| Field Name           |  Field Name             |   Type        |     Option          |    Fetch From              |  Select Field       |   
-|----------------------|-------------------------|---------------|---------------------|----------------------------|---------------------|
-| HS Code              |                         |  Data         |                     |                            |                     | 
-| HS Code Detail       |                         |  Link         |  HS Code            | 
-| Scenario ID          |                         |  Link         |  Scenario ID        |                            |                     |    
-| Scenario Detail      |                         |  Data         |                     | custom_scenario_details    | Senario ID (Data)   |   
-| FBR UoM              |                         |  Link         |  FBR UoM            |                            | 
-| SRO Item SNo         |                         |  Link         |  SRO Item SNo       |                            | 
-| SRO Schedule No      |                         |  Link         |  SRO Schedule No    |                            |
-| Sale Type            |                         |  Link         |  Sale Type          |                            | 
-| Tax Payer Type       |                         |  Link         |  Tax Payer Type     |                            |
-| Invoice Type         |                         |  Link         |  Invoice Type       |                            | 
-| Buyer Province       |                         |  Link         |  Buyer Province     |                            | 
+| Field Name           |  Field Name             |   Type    |     Option          |    Fetch From              |  Select Field       |   
+|----------------------|-------------------------|-----------|---------------------|----------------------------|---------------------|
+| HS Code              |                         |  Data     |                     | custom_hs_code_detail      | HS Code (Data)      | 
+| HS Code Detail       |                         |  Link     |  HS Code            |                            |                     |
+| Scenario ID          |                         |  Data     |                     | custom_scenario_detail     | Senario ID (Data)   |   
+| Scenario Detail      |                         |  Link     |  Scenario ID        |                            |                     |  
+| FBR UoM              |                         |  Link     |  FBR UoM            |                            | 
+| SRO Item SNo         |                         |  Link     |  SRO Item SNo       |                            | 
+| SRO Schedule No      |                         |  Link     |  SRO Schedule No    |                            |
+| Sale Type            |                         |  Link     |  Sale Type          |                            | 
+| Tax Payer Type       |                         |  Link     |  Tax Payer Type     |                            |
+| Invoice Type         |                         |  Link     |  Invoice Type       |                            | 
+| Buyer Province       |                         |  Link     |  Buyer Province     |                            | 
 
 
 ---
