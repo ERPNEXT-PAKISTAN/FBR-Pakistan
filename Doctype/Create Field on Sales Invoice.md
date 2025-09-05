@@ -19,6 +19,24 @@
 
 ---
 
+### 🏷️ FBR Response
+
+
+| Field Name                      |  Field Name                          | Doctype Name          | 
+|---------------------------------|--------------------------------------|-----------------------|
+| FBR Integration Type            | custom_fbr_integration_type          |                       | 
+| FBR Invoice No                  | custom_fbr_invoice_no                |                       | 
+| FBR Invoice Status              | custom_fbr_invoice_status            |                       |
+| FBR Submission Time             | custom_fbr_submission_time           |                       |
+| FBR Invoice Status Code         | custom_fbr_invoice_status_code       |                       |
+| FBR QR Code                     | custom_fbr_qr_code                   |                       |
+| FBR Responsed                   | custom_fbr_responsed                 |                       |
+| FBR Invoice Item No             | custom_fbr_invoice_item_no           |                       |
+| FBR Invoice Statuses            | custom_fbr_invoice_statuses          |                       |
+| FBR Digital Invoice Response    | custom_fbr_digital_invoice_response  |                       |
+
+
+---
 
 ### ⚙️ Settings For Import Data:
 
