@@ -6,7 +6,8 @@
 
 ### 2️⃣ Create Doctype Step by Step:   
 ---
-
+---
+---
 ### 1️⃣📑🏗️ Create Doctype Step by Step:
 
 
