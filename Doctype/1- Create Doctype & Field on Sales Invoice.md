@@ -1,8 +1,12 @@
 ## 🔹 Create Doctype for FBR Data
 
 ---
+### 1️⃣ Create From `Copy to Clipboard` 🔗 https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/Doctype
+OR
+### 2️⃣ Create Doctype Step by Step:
+---
 
-### 1️⃣📑🏗️ List of Doctype
+### 1️⃣📑🏗️ Create Doctype Step by Step:
 
 
 | Field Name         |  Field Name             |   Type        |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
