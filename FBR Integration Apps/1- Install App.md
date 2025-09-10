@@ -71,7 +71,7 @@ bench migrate && bench restart
 ---OR---
 ---
 
-#### *1️⃣ Create From `Copy to Clipboard`* 
+### *1️⃣ Create From `Copy to Clipboard`* 
 
 #### 📝 Doctype Links  
 [Go to Doctype Directory »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/Doctype)
