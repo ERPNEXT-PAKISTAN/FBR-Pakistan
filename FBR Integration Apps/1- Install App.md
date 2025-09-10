@@ -170,5 +170,5 @@ Buyer Province
 
 ---
 
-<img src="https://img.icons8.com/fluency/48/000000/developer.png" width="32" alt="dev icon"/>  
+<img src="https://img.icons8.com/fluency/48/developer.png" width="32" alt="dev icon"/>
 Happy Integrating with FBR Pakistan!
