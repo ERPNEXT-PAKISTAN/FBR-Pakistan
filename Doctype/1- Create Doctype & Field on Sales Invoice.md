@@ -12,18 +12,18 @@
 ### 1️⃣📑🏗️ Create Doctype Step by Step:
 
 
-| Field Name         |  Field Name             |   Type        |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
-|--------------------|-------------------------|---------------|-------------------------|------------------------|---------------------------------------------|
-| HS Code            | HS Code Detail          |  Float        |   HS Code               | Expression             | `format:{hs_code} - {hs_code_detail}`  |
-| Scenario ID        | Scenario Detail         |  Data         |   Scenario ID           | Expression             | `format:{scenario_id} - {scenario_detail}`  |
-| FBR UoM            |                         |  Data         |   FBR UoM               | By Fieldname           | `field:fbr_uom`                             |
-| SRO Item SNo       |                         |  Data         |   SRO Item SNo          | By Fieldname           | `field:sro_item_sno`                        |
-| SRO Schedule No    |                         |  Data         |   SRO Schedule No       | By Fieldname           | `field:sro_schedule_no`                     |
-| Sale Type          |                         |  Data         |   Sale Type             | By Fieldname           | `field:sale_type`                           |
-| Tax Payer Type     |                         |  Data         |   Tax Payer Type        | By Fieldname           | `field:tax_payer_type`                      |
-| Invoice Type       |                         |  Data         |   Invoice Type          | By Fieldname           | `field:invoice_type`                        |
-| Buyer Province     |                         |  Data         |   Buyer Province        | By Fieldname           | `field:buyer_province`                      |
-
+| Field Name           |  Field Name         |   Type        |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
+|----------------------|---------------------|---------------|-------------------------|------------------------|---------------------------------------------|
+| HS Code              | HS Code Detail      |  Float        |   HS Code               | Expression             | `format:{hs_code} - {hs_code_detail}`  |
+| Scenario ID          | Scenario Detail     |  Data         |   Scenario ID           | Expression             | `format:{scenario_id} - {scenario_detail}`  |
+| FBR UoM              |                     |  Data         |   FBR UoM               | By Fieldname           | `field:fbr_uom`                             |
+| SRO Item SNo         |                     |  Data         |   SRO Item SNo          | By Fieldname           | `field:sro_item_sno`                        |
+| SRO Schedule No      |                     |  Data         |   SRO Schedule No       | By Fieldname           | `field:sro_schedule_no`                     |
+| Sale Type            |                     |  Data         |   Sale Type             | By Fieldname           | `field:sale_type`                           |
+| Tax Payer Type       |                     |  Data         |   Tax Payer Type        | By Fieldname           | `field:tax_payer_type`                      |
+| Invoice Type         |                     |  Data         |   Invoice Type          | By Fieldname           | `field:invoice_type`                        |
+| Buyer Province       |                     |  Data         |   Buyer Province        | By Fieldname           | `field:buyer_province`                      |
+| FBR Invoice Setting  |                     |               |   FBR Invoice Setting   |                        |                                             |
 ---
 
 ### ⚙️ Settings For Import Data:
