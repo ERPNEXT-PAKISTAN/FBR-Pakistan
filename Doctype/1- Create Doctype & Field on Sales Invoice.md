@@ -23,7 +23,7 @@
 | Tax Payer Type       |                     |  Data         |   Tax Payer Type        | By Fieldname           | `field:tax_payer_type`                      |
 | Invoice Type         |                     |  Data         |   Invoice Type          | By Fieldname           | `field:invoice_type`                        |
 | Buyer Province       |                     |  Data         |   Buyer Province        | By Fieldname           | `field:buyer_province`                      |
-| FBR Invoice Setting  |                     |               |   FBR Invoice Setting   |                        |                                             |
+| FBR Invoice Settings |                     |               |   FBR Invoice Settings |                        |                                             |
 ---
 
 ### ⚙️ Settings For Import Data:
