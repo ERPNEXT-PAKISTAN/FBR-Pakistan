@@ -68,7 +68,7 @@ bench migrate && bench restart
 | Permissions  | System Manager                   | Import  |   ✅ Enabled |
 
 ---
----OR---
+###---OR---
 
 ---
 
@@ -79,7 +79,7 @@ bench migrate && bench restart
 
 ---
 
-### 📥 Download & Upload Excel Data  
+### 2️⃣ 📥 Download & Upload Excel Data into ERPNext:  
 [![Excel Icon](https://img.icons8.com/fluency/24/000000/ms-excel.png)](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)  
 **Download Excel Data and Upload into Doctype:**  
 [Go to FBR Invoice Tax Type »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)
@@ -90,7 +90,7 @@ bench migrate && bench restart
 
 ---
 
-### 2️⃣📑🏗️ 🏷️ Create Field on Sales Invoice :
+### 3- 📑🏗️ 🏷️ Create Field on Sales Invoice :
 
 
 | Field Name           |  Field Name             |   Type    |     Option          |    Fetch From              |  Select Field       |   
@@ -111,7 +111,7 @@ bench migrate && bench restart
 ---
 ---
 
-### 3️⃣🎯📑🏷️ FBR Response
+### 4- 🎯📑🏷️ FBR Response
 
 
 | Field Name                      |  Field Name                          |    Data Type          | 
