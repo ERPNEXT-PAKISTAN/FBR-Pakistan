@@ -66,9 +66,24 @@ bench migrate && bench restart
 |--------------|----------------------------------|---------|---------------|
 | Form Setting | Allow Import (via Import Tool)   |         |   ✅ Enabled |
 | Permissions  | System Manager                   | Import  |   ✅ Enabled |
+---
+
+### ⚙️ FBR Integration Settings:
+#### ⚙ Doctype Name : FBR Invoice Settings:
+
+| Field Label                     | Type        |  Field Name                  |
+|--------------------------------|-------------|-------------------------------|
+| Enabled                        |   Check     | enabled                       | 
+| SSL Applied                    |   Check     | ssl_applied                   |
+| Integration Tyope              |   Select    | integration_tyope             |
+| Sandbox API URL                |   Data      | sandbox_api_rul               | 
+| Sandbox Security Token         |   Data      | sandbox_security_token        |
+| Production API URL             |   Data      | production_api_url            |
+| Production Security Token      |   Data      | production_security_token     |
+
 
 ---
-###---OR---
+### OR
 
 ---
 
