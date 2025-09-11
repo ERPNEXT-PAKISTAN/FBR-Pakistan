@@ -14,19 +14,19 @@ Follow these steps to set up the FBR Integration app in your ERPNext bench:
 
 ---
 
-#### 🏁 **Step 1️⃣: Create the App inside your Bench**
+##### 🏁 **Step 1️⃣: Create the App inside your Bench**
 ```bash
 bench new-app fbr_integration
 ```
 ---
 
-#### ⚙️ **Step 2️⃣: Install the App on Your Site**
+##### ⚙️ **Step 2️⃣: Install the App on Your Site**
 ```bash
 bench --site site1.local install-app fbr_integration
 ```
 ---
 
-#### 🔄 **Step 3️⃣: Migrate & Restart Bench**
+##### 🔄 **Step 3️⃣: Migrate & Restart Bench**
 ```bash
 bench migrate && bench restart
 ```
