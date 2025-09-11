@@ -8,7 +8,7 @@
 #### Welcome to the **FBR Pakistan** integration documentation! Enhance your ERPNext experience with seamless FBR data management.
 ---
 
-## 🛠️ Installation Steps
+## 1- 🛠️ Installation Steps
 
 Follow these steps to set up the FBR Integration app in your ERPNext bench:
 
@@ -40,7 +40,7 @@ bench migrate && bench restart
 
 ---
 
-### 📦 Create Doctype For FBR Invoice Taypes:  
+### 2- 📦 Create Doctype For FBR Invoice Taypes:  
 
 ---
 ### 1️⃣📑🏗️ Create Doctype Step by Step:
@@ -69,6 +69,7 @@ bench migrate && bench restart
 
 ---
 ---OR---
+
 ---
 
 ### *1️⃣ Create From `Copy to Clipboard`* 
