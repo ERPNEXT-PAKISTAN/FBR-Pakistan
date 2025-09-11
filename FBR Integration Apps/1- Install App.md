@@ -68,7 +68,7 @@ bench migrate && bench restart
 | Permissions  | System Manager                   | Import  |   ✅ Enabled |
 ---
 
-### ⚙️ FBR Integration Settings:
+### 🛠️ FBR Integration Settings Doctype:
 #### ⚙ Doctype Name : FBR Invoice Settings:
 
 | Field Label                     | Type        |  Field Name                  |
