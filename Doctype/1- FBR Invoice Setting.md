@@ -1,5 +1,5 @@
-### 1️⃣ 📑 Doctype Copy & Paste
-
+### 📑 Create Doctype FBR Invoice Settings
+### 1️⃣ Copy & Paste
 ---
 
 ```
@@ -12,7 +12,7 @@
 FBR Invoice Settings
 ```
 ---
-### 📑 Create Doctype FBR Invoice Settings
+### 📑 FBR Invoice Settings
 <img width="1323" height="659" alt="image" src="https://github.com/user-attachments/assets/a0b76a6d-a44a-4a41-b90b-577089290309" />
 
 ---
