@@ -75,7 +75,7 @@ bench migrate && bench restart
 |--------------------------------|-------------|-------------------------------|
 | Enabled                        |   Check     | enabled                       | 
 | SSL Applied                    |   Check     | ssl_applied                   |
-| Integration Tyope              |   Select    | integration_tyope             |
+| Integration Type              |   Select    | integration_type             |
 | Sandbox API URL                |   Data      | sandbox_api_rul               | 
 | Sandbox Security Token         |   Data      | sandbox_security_token        |
 | Production API URL             |   Data      | production_api_url            |
