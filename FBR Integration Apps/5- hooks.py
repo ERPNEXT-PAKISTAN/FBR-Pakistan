@@ -2,7 +2,7 @@ app_name = "fbr_integration"
 app_title = "FBR Integration"
 app_publisher = "Taimoor"
 app_description = "FBR Digital Invoice Integration"
-app_email = "you@example.com"
+app_email = "tymuur@outlook.com"
 app_license = "MIT"
 
 # include client side JS (this path is relative to /assets after build)
