@@ -1,5 +1,5 @@
 ### 📑 Create Doctype FBR Invoice Settings
-### 1️⃣ Copy & Paste
+#### 1️⃣ Copy & Paste
 ---
 
 ```
