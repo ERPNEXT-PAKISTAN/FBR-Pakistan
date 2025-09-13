@@ -69,7 +69,7 @@ bench migrate && bench restart
 ---
 
 ### 🛠️ FBR Integration Settings Doctype:
-#### ⚙ Doctype Name : FBR Invoice Settings:
+#### ⚙ Doctype Name : `FBR Invoice Settings`
 
 | Field Label                     | Type        |  Field Name                  |
 |--------------------------------|-------------|-------------------------------|
