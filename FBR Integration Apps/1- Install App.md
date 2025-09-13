@@ -108,19 +108,18 @@ bench migrate && bench restart
 ### 3- 📑🏗️ 🏷️ Create Field on Sales Invoice :
 
 
-| Field Name           |  Field Name             |   Type    |     Option          |    Fetch From              |  Select Field       |   
-|----------------------|-------------------------|-----------|---------------------|----------------------------|---------------------|
-| HS Code              |                         |  Data     |                     | custom_hs_code_detail      | HS Code (Data)      | 
-| HS Code Detail       |                         |  Link     |  HS Code            |                            |                     |
-| Scenario ID          |                         |  Data     |                     | custom_scenario_detail     | Senario ID (Data)   |   
-| Scenario Detail      |                         |  Link     |  Scenario ID        |                            |                     |  
-| FBR UoM              |                         |  Link     |  FBR UoM            |                            | 
-| SRO Item SNo         |                         |  Link     |  SRO Item SNo       |                            | 
-| SRO Schedule No      |                         |  Link     |  SRO Schedule No    |                            |
-| Sale Type            |                         |  Link     |  Sale Type          |                            | 
-| Tax Payer Type       |                         |  Link     |  Tax Payer Type     |                            |
-| Invoice Type         |                         |  Link     |  Invoice Type       |                            | 
-| Buyer Province       |                         |  Link     |  Buyer Province     |                            | 
+| Field Name           |           |   Type    |     Option          |    Fetch From              |  Select Field       |  Create On          | 
+|----------------------|-----------|-----------|---------------------|----------------------------|---------------------|---------------------|
+| HS Code              |           |  Data     |                     | custom_hs_code_detail      | HS Code (Data)      |  Item Master        |
+| Scenario ID          |           |  Data     |                     | custom_scenario_detail     | Senario ID (Data)   |  Sales Invoice      |
+| Scenario Detail      |           |  Link     |  Scenario ID        |                            |                     |  Sales Invoice      |
+| FBR UoM              |           |  Link     |  FBR UoM            |                            |                     |  Item Master        |
+| SRO Item SNo         |           |  Link     |  SRO Item SNo       |                            |                     |  Item Master        |
+| SRO Schedule No      |           |  Link     |  SRO Schedule No    |                            |                     |  Item Master        |
+| Sale Type            |           |  Link     |  Sale Type          |                            |                     |  Item Master        |
+| Tax Payer Type       |           |  Link     |  Tax Payer Type     |                            |                     |  Customer Master    |
+| Invoice Type         |           |  Link     |  Invoice Type       |                            |                     |                     |
+| Buyer Province       |           |  Link     |  Buyer Province     |                            |                     |  Customer Master    |
 
 
 ---
