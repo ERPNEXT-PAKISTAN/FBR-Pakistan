@@ -1,9 +1,5 @@
 ### Doctype Copy & Paste
----
 
-```
-FBR Invoice Settings
-```
 ---
 
 ```
@@ -17,6 +13,6 @@ FBR Invoice Settings
 ```
 ---
 ### Create Doctype FBR Invoice Settings
-<img width="1367" height="688" alt="image" src="https://github.com/user-attachments/assets/2b325b92-61ab-495c-b7b4-0511e8dfa9a3" />
+<img width="1323" height="659" alt="image" src="https://github.com/user-attachments/assets/a0b76a6d-a44a-4a41-b90b-577089290309" />
 
 ---
