@@ -71,11 +71,11 @@ bench migrate && bench restart
 ### 🛠️ FBR Integration Settings Doctype:
 #### ⚙ Doctype Name : `FBR Invoice Settings`
 
-| Field Label                     | Type        |  Field Name                  |
+| Field Label                    | Type        |  Field Name                   |
 |--------------------------------|-------------|-------------------------------|
 | Enabled                        |   Check     | enabled                       | 
 | SSL Applied                    |   Check     | ssl_applied                   |
-| Integration Type              |   Select    | integration_type             |
+| Integration Type               |   Select    | integration_type              |
 | Sandbox API URL                |   Data      | sandbox_api_rul               | 
 | Sandbox Security Token         |   Data      | sandbox_security_token        |
 | Production API URL             |   Data      | production_api_url            |
