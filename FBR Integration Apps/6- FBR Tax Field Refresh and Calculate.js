@@ -1,11 +1,15 @@
 // Client Script
+// Name : FBR Tax Calculation Clear
 // Doctype : Sales invoice
+//Apply To : Form
+//Module : Selling
+// Enable : Yes
 // Purpose
 //Extend ERPNext item-level tax handling beyond the built-in tax table.
 //Allow custom tax breakdowns per line item (e.g., GST, Further Tax, Extra Tax, etc.).
 //Automatically recalculate when quantity, rate, or template changes.
 //Store results in custom fields for reporting, FBR integration, or invoice printi
-
+//---------------------------------------------------------------------------------------
 
 
 frappe.ui.form.on('Sales Invoice Item', {
