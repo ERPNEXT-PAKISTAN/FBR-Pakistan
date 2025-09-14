@@ -156,8 +156,34 @@ bench migrate && bench restart
 ---
 ---
 ### 📑 Create Tax Fiels on Sales Invoice Item :
+
+#### 🏷️ Tax Rate Fields :
 ```
- Sales Tax 
+ Sales Tax Rate 
+```
+```
+Further Tax Rate
+```
+```
+Extra Tax Rate
+```
+```
+Other Tax 1 Rate
+```
+```
+Other Tax 2 Rate
+```
+```
+Tax Inclusive Amount
+```
+```
+Total Tax Amount
+```
+---
+
+#### 🏷️ Tax Amount Fields :
+```
+Sales Tax 
 ```
 ```
 Further Tax
@@ -171,13 +197,22 @@ Other Tax 1
 ```
 Other Tax 2
 ```
+---
+### - 🎯📑🏷️ Create Tax Fiels on Sales Invoice Item :
 
 
+| Tax Rate Fields          | Tax Amount Fields    | 
+|--------------------------|----------------------|
+| Sales Tax Rate           | Sales Tax            |  
+| Further Tax Rate         | Further Tax          | 
+| Extra Tax Rate           | Extra Tax            |                  
+| Other Tax 1 Rate         | Other Tax 1          |                  
+| Other Tax 2 Rate         | Other Tax 2          |                 
+| Tax Inclusive Amount     | Total Tax Amount     |          
 
 
-
-
-
+##### Rate       ➡    Tax Exclusive Amount
+##### Amount     ➡    Change to Tax Exclusive Amount
 
 
 ---
