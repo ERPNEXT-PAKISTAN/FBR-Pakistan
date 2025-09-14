@@ -125,8 +125,6 @@ bench migrate && bench restart
 | Sale Type            | Sales Invoice Item    |  Link     |  Sale Type          |                            |                     |  Item Master        |
 
 
-
-
 ---
 ---
 
@@ -148,6 +146,16 @@ bench migrate && bench restart
 
 
 ---
+### 🚀 **Install the Following Script**
+#### 🛠️ ➡ handler.py
+#### 🛠️ ➡ hooks.py
+#### 🛠️ ➡ fbr_api.py
+#### 🛠️ ➡ Calculate Tax Field Values.py
+#### 🛠️ ➡ FBR Tax Field Refresh.js
+#### 🛠️ ➡ FBR Invoice Send.js
+
+
+
 ---
 ### 🏷️💡📑| Doctype Name & Field Name
 ---
