@@ -121,7 +121,7 @@ bench migrate && bench restart
 | SRO Schedule No      |           |  Link     |  SRO Schedule No    |                            |                     |  Item Master        |
 | Sale Type            |           |  Link     |  Sale Type          |                            |                     |  Item Master        |
 | Tax Payer Type       |           |  Link     |  Tax Payer Type     |                            |                     |  Customer Master    |
-| Invoice Type         |           |  Link     |  Invoice Type       |                            |                     |                     |
+| Invoice Type         |           |  Link     |  Invoice Type       |                            |                     |  Sales Invoice      |
 | Buyer Province       |           |  Link     |  Buyer Province     |                            |                     |  Customer Master    |
 
 
