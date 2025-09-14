@@ -174,8 +174,8 @@ Other Tax 2
 ---
 
 ### 🏷️📑 Item Tax Template - Tax Masters
-➡ Create Tax Templates
-➡ Attach with Item
+➡ Create Tax Templates     
+➡ Attach with Item     
 
 
 ---
