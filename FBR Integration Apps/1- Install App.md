@@ -48,7 +48,7 @@ bench migrate && bench restart
 
 | Field Name         |  Field Name             |   Type            |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
 |--------------------|-------------------------|-------------------|-------------------------|------------------------|---------------------------------------------|
-| HS Code            | HS Code Detail          |  Float/Small Text |   HS Code               | Expression             | `format:{s_code} - {hs_code_detail}`  |
+| HS Code            | HS Code Detail          |  Data/Small Text |   HS Code               | Expression             | `format:{s_code} - {hs_code_detail}`  |
 | Scenario ID        | Scenario Detail         |  Data/Data        |   Scenario ID           | Expression             | `format:{enario_id} - {scenario_detail}`  |
 | FBR UoM            |                         |  Data             |   FBR UoM               | By Fieldname           | `field:fbr_uom`                             |
 | SRO Item SNo       |                         |  Data             |   SRO Item SNo          | By Fieldname           | `field:sro_item_sno`                        |
