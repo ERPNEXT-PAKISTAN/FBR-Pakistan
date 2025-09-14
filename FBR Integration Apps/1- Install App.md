@@ -154,7 +154,33 @@ bench migrate && bench restart
 #### 🛠️ ➡ FBR Tax Field Refresh.js
 #### 🛠️ ➡ FBR Invoice Send.js
 ---
+---
+### 📑 Create Tax Fiels on Sales Invoice Item :
+```
+ Sales Tax 
+```
+```
+Further Tax
+```
+```
+Extra Tax
+```
+```
+Other Tax 1
+```
+```
+Other Tax 2
+```
 
+
+
+
+
+
+
+
+
+---
 ### 📑 Chart of Account - Create GL Tax Accounts
 ```
  General Sales Tax 
@@ -172,12 +198,16 @@ Other Tax 1
 Other Tax 2
 ```
 ---
+---
 
 ### 🏷️📑 Item Tax Template - Tax Masters
 ➡ Create Tax Templates     
 ➡ Attach with Item     
 
 
+
+---
+---
 ---
 ### 🏷️💡📑| Doctype Name & Field Name
 ---
