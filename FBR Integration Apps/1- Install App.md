@@ -153,7 +153,29 @@ bench migrate && bench restart
 #### 🛠️ ➡ Calculate Tax Field Values.py
 #### 🛠️ ➡ FBR Tax Field Refresh.js
 #### 🛠️ ➡ FBR Invoice Send.js
+---
 
+### 📑 Chart of Account - Create GL Tax Accounts
+```
+ General Sales Tax 
+```
+```
+Further Tax
+```
+```
+Extra Tax
+```
+```
+Other Tax 1
+```
+```
+Other Tax 2
+```
+---
+
+### 🏷️📑 Item Tax Template - Tax Masters
+➡ Create Tax Templates
+➡ Attach with Item
 
 
 ---
