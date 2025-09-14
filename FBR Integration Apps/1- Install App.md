@@ -48,7 +48,7 @@ bench migrate && bench restart
 
 | Field Name         |  Field Name             |   Type            |    Doctype Name         |  Naming/Naming Rule    |                    Auto Name                |
 |--------------------|-------------------------|-------------------|-------------------------|------------------------|---------------------------------------------|
-| HS Code            | HS Code Detail          |  Data/Small Text  |   HS Code               | Expression             | `format:{hs_code} - {hs_code_detail}`  |
+| HS Code            | HS Code Detail          |  Data/Small Text  |   HS Code               | By Fieldname           | `field:hs_code`                             |
 | Scenario ID        | Scenario Detail         |  Data/Data        |   Scenario ID           | Expression             | `format:{scenario_id} - {scenario_detail}`  |
 | FBR UoM            |                         |  Data             |   FBR UoM               | By Fieldname           | `field:fbr_uom`                             |
 | SRO Item SNo       |                         |  Data             |   SRO Item SNo          | By Fieldname           | `field:sro_item_sno`                        |
@@ -111,18 +111,20 @@ bench migrate && bench restart
 ### 3- 📑🏗️ 🏷️ Create Field on Sales Invoice :
 
 
-| Field Name           |           |   Type    |     Option          |    Fetch From              |  Select Field       |  Create On          | 
-|----------------------|-----------|-----------|---------------------|----------------------------|---------------------|---------------------|
-| HS Code              |           |  Data     |                     | custom_hs_code_detail      | HS Code (Data)      |  Item Master        |
-| Scenario ID          |           |  Data     |                     | custom_scenario_detail     | Senario ID (Data)   |  Sales Invoice      |
-| Scenario Detail      |           |  Link     |  Scenario ID        |                            |                     |  Sales Invoice      |
-| FBR UoM              |           |  Link     |  FBR UoM            |                            |                     |  Item Master        |
-| SRO Item SNo         |           |  Link     |  SRO Item SNo       |                            |                     |  Item Master        |
-| SRO Schedule No      |           |  Link     |  SRO Schedule No    |                            |                     |  Item Master        |
-| Sale Type            |           |  Link     |  Sale Type          |                            |                     |  Item Master        |
-| Tax Payer Type       |           |  Link     |  Tax Payer Type     |                            |                     |  Customer Master    |
-| Invoice Type         |           |  Link     |  Invoice Type       |                            |                     |  Sales Invoice      |
-| Buyer Province       |           |  Link     |  Buyer Province     |                            |                     |  Customer Master    |
+| Field Name           |   Create & Link On    |   Type    |     Option          |    Fetch From              |  Select Field       |  Create On          | 
+|----------------------|-----------------------|-----------|---------------------|----------------------------|---------------------|---------------------|
+| Scenario ID          | Sales Invoice         |  Data     |                     | custom_scenario_detail     | Senario ID (Data)   |  Sales Invoice      |
+| Scenario Detail      | Sales Invoice         |  Link     |  Scenario ID        |                            |                     |  Sales Invoice      |
+| Tax Payer Type       | Sales Invoice         |  Link     |  Tax Payer Type     |                            |                     |  Customer Master    |
+| Buyer Province       | Sales Invoice         |  Link     |  Buyer Province     |                            |                     |  Customer Master    |
+| Invoice Type         | Sales Invoice         |  Link     |  Invoice Type       |                            |                     |  Sales Invoice      |
+| HS Code              | Sales Invoice Item    |  Link     |  HS Code            |                            |                     |  Item Master        |
+| FBR UoM              | Sales Invoice Item    |  Link     |  FBR UoM            |                            |                     |  Item Master        |
+| SRO Item SNo         | Sales Invoice Item    |  Link     |  SRO Item SNo       |                            |                     |  Item Master        |
+| SRO Schedule No      | Sales Invoice Item    |  Link     |  SRO Schedule No    |                            |                     |  Item Master        |
+| Sale Type            | Sales Invoice Item    |  Link     |  Sale Type          |                            |                     |  Item Master        |
+
+
 
 
 ---
