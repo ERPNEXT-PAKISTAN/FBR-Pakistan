@@ -167,10 +167,11 @@ bench migrate && bench restart
 | Other Tax 1 Rate         | Other Tax 1          |                  
 | Other Tax 2 Rate         | Other Tax 2          |                 
 | Tax Inclusive Amount     | Total Tax Amount     |          
-
-
-Rate       ➡    Tax Exclusive Amount
-Amount     ➡    Change to Tax Exclusive Amount
+---
+```
+ `Rate     ➡ Tax Exclusive Rate`
+ `Amount   ➡ Change to Tax Exclusive Amount`  
+```
 ---
 
 
