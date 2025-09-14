@@ -211,8 +211,8 @@ Other Tax 2
 | Tax Inclusive Amount     | Total Tax Amount     |          
 
 
-##### Rate       ➡    Tax Exclusive Amount
-##### Amount     ➡    Change to Tax Exclusive Amount
+#### Rate       ➡    Tax Exclusive Amount
+#### Amount     ➡    Change to Tax Exclusive Amount
 
 
 ---
