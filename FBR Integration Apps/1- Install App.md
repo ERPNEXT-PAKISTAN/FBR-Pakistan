@@ -147,18 +147,8 @@ bench migrate && bench restart
 
 ---
 ---
-### 6- 🚀 **Install the Following Script**
-#### 🛠️ ➡ handler.py
-#### 🛠️ ➡ hooks.py
-#### 🛠️ ➡ fbr_api.py
-#### 🛠️ ➡ Calculate Tax Field Values.py
-#### 🛠️ ➡ FBR Tax Field Refresh.js
-#### 🛠️ ➡ FBR Invoice Send.js
----
----
 
-
-### 7- 📑🏷️ Create Tax Fiels on Sales Invoice Item :
+### 6- 📑🏷️ Create Tax Fiels on Sales Invoice Item :
 
 | Tax Rate Fields          | Tax Amount Fields    | 
 |--------------------------|----------------------|
@@ -174,7 +164,17 @@ bench migrate && bench restart
  `Amount   ➡ Change to Tax Exclusive Amount`  
 ```
 ---
+---
 
+### 7- 🚀 **Install the Following Script**
+#### 🛠️ ➡ handler.py
+#### 🛠️ ➡ hooks.py
+#### 🛠️ ➡ fbr_api.py
+#### 🛠️ ➡ F R Tax Calculation.py
+#### 🛠️ ➡ FBR Tax Calculation Clear/Refresh.js
+#### 🛠️ ➡ Send to FBR.js
+---
+---
 
 #### 🏷️ Tax Rate Fields :
 ```
