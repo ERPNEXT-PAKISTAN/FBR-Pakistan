@@ -108,24 +108,67 @@ def send_invoice_to_fbr(doc, method=None):
             doc.custom_fbr_digital_invoice_response = json.dumps(res_json, indent=2)
             doc.custom_fbr_responsed = "Success"
             doc.save(ignore_permissions=True)
-            frappe.msgprint(f"✅ Invoice sent successfully to FBR<br>Invoice #: {res_json.get('invoiceNumber')}")
+
+            # --- Styled Success Message ---
+            fbr_invoice_no = res_json.get("invoiceNumber", "")
+            frappe.msgprint(
+                msg=f"""
+                    <div style="font-size:14px; line-height:1.6;">
+                        <p>🟢 <b>Invoice Sent</b></p>
+                        <p>🎉 <b>Congratulations!</b></p>
+                        <p>
+                            Your Sales Invoice <b>{doc.name}</b> has been successfully submitted 
+                            to the <b>IRIS Portal – FBR</b>.
+                        </p>
+                        <p>
+                            <b>FBR Invoice No:</b> {fbr_invoice_no}
+                        </p>
+                        <p style="color:green;">
+                            ☑ Thank you for staying compliant and digital by Fibersoft ERP-Pakistan!
+                        </p>
+                    </div>
+                """,
+                title="Invoice Sent",
+                indicator="green"
+            )
+
         else:
             doc.custom_fbr_responsed = "Error"
             doc.custom_fbr_digital_invoice_response = json.dumps(res_json, indent=2)
             doc.save(ignore_permissions=True)
-            frappe.throw(f"❌ FBR Error: {json.dumps(res_json)}")
+            frappe.throw(
+                f"""
+                <div style="font-size:14px; line-height:1.6; color:red;">
+                    ❌ <b>FBR Error</b><br>
+                    Response: {json.dumps(res_json)}
+                </div>
+                """
+            )
 
     except requests.exceptions.HTTPError as e:
         doc.custom_fbr_responsed = "HTTPError"
         doc.custom_fbr_digital_invoice_response = str(e)
         doc.save(ignore_permissions=True)
-        frappe.throw(f"❌ FBR HTTP Exception: {e}")
+        frappe.throw(
+            f"""
+            <div style="font-size:14px; line-height:1.6; color:red;">
+                ❌ <b>FBR HTTP Exception</b><br>
+                {str(e)}
+            </div>
+            """
+        )
     except Exception as e:
         doc.custom_fbr_responsed = "Exception"
         doc.custom_fbr_digital_invoice_response = str(e)
         doc.save(ignore_permissions=True)
-        frappe.throw(f"❌ FBR Exception: {str(e)}")
+        frappe.throw(
+            f"""
+            <div style="font-size:14px; line-height:1.6; color:red;">
+                ❌ <b>FBR Exception</b><br>
+                {str(e)}
+            </div>
+            """
+        )
 
 def after_submit_invoice(doc, method=None):
     send_invoice_to_fbr(doc)
-    
