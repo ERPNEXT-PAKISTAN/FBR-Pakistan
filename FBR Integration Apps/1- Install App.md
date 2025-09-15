@@ -96,6 +96,7 @@ bench migrate && bench restart
 [Go to Doctype Directory »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/Doctype)
 
 ---
+---
 
 ### 3- 📥 Download & Upload Excel Data into ERPNext:  
 [![Excel Icon](https://img.icons8.com/fluency/24/000000/ms-excel.png)](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)  
@@ -144,7 +145,7 @@ bench migrate && bench restart
 | FBR Invoice Statuses            | custom_fbr_invoice_statuses          |   Long Text           |                    
 | FBR Digital Invoice Response    | custom_fbr_digital_invoice_response  |   Long Text           |                    
 
-
+---
 ---
 ### 6- 🚀 **Install the Following Script**
 #### 🛠️ ➡ handler.py
@@ -216,7 +217,7 @@ Other Tax 1
 Other Tax 2
 ```
 
-
+---
 ---
 ### 8- 📑 Chart of Account - Create GL Tax Accounts
 ```
