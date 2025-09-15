@@ -4,7 +4,7 @@
 # Reference Document Type : Sales Invoice
 # DocType Event : Before Save
 # Module : Selling
-
+#----------------------
 
 
 for item in doc.items:
@@ -34,15 +34,15 @@ for item in doc.items:
         for tax in tax_details:
             tax_type = tax.tax_type or ""
 
-            if "General Sales Tax" in tax_type:
+            if "General Sales Tax" in tax_type:                           # Update You GL Account from Chart of Account Here.........
                 item.custom_sales_tax_rate = tax.tax_rate or 0
-            elif "Further Tax" in tax_type:
+            elif "Further Tax" in tax_type:                               # Update You GL Account from Chart of Account Here.........
                 item.custom_further_tax_rate = tax.tax_rate or 0
-            elif "Extra Tax" in tax_type:
+            elif "Extra Tax" in tax_type:                                 # Update You GL Account from Chart of Account Here.........
                 item.custom_extra_tax_rate = tax.tax_rate or 0
-            elif "Other Tax 1" in tax_type:
+            elif "Other Tax 1" in tax_type:                               # Update You GL Account from Chart of Account Here.........
                 item.custom_other_tax_1_rate = tax.tax_rate or 0
-            elif "Other Tax 2" in tax_type:
+            elif "Other Tax 2" in tax_type:                               # Update You GL Account from Chart of Account Here.........
                 item.custom_other_tax_2_rate = tax.tax_rate or 0
 
         # Calculate tax amounts
@@ -62,3 +62,4 @@ for item in doc.items:
             )
 
             item.custom_tax_inclusive_amount = item.amount + item.custom_total_tax_amount
+
