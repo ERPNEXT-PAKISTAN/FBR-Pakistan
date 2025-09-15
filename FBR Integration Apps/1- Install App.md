@@ -97,7 +97,7 @@ bench migrate && bench restart
 
 ---
 
-### 2️⃣ 📥 Download & Upload Excel Data into ERPNext:  
+### 3- 📥 Download & Upload Excel Data into ERPNext:  
 [![Excel Icon](https://img.icons8.com/fluency/24/000000/ms-excel.png)](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)  
 **Download Excel Data and Upload into Doctype:**  
 [Go to FBR Invoice Tax Type »](https://github.com/ERPNEXT-PAKISTAN/FBR-Pakistan/tree/main/FBR%20Tax%20Type%20Excel%20Data)
@@ -108,7 +108,7 @@ bench migrate && bench restart
 
 ---
 
-### 3- 📑🏗️ 🏷️ Create Field on Sales Invoice :
+### 4- 📑🏗️ 🏷️ Create Field on Sales Invoice :
 
 
 | Field Name           |   Create & Link On    |   Type    |     Option          |    Fetch From              |  Select Field       |  Create On          | 
@@ -128,7 +128,7 @@ bench migrate && bench restart
 ---
 ---
 
-### 4- 🎯📑🏷️ FBR Response
+### 5- 🎯📑🏷️ FBR Response
 
 
 | Field Name                      |  Field Name                          |    Data Type          | 
@@ -146,7 +146,7 @@ bench migrate && bench restart
 
 
 ---
-### 🚀 **Install the Following Script**
+### 6- 🚀 **Install the Following Script**
 #### 🛠️ ➡ handler.py
 #### 🛠️ ➡ hooks.py
 #### 🛠️ ➡ fbr_api.py
@@ -157,7 +157,7 @@ bench migrate && bench restart
 ---
 
 
-### - 📑🏷️ Create Tax Fiels on Sales Invoice Item :
+### 7- 📑🏷️ Create Tax Fiels on Sales Invoice Item :
 
 | Tax Rate Fields          | Tax Amount Fields    | 
 |--------------------------|----------------------|
@@ -218,7 +218,7 @@ Other Tax 2
 
 
 ---
-### 📑 Chart of Account - Create GL Tax Accounts
+### 8- 📑 Chart of Account - Create GL Tax Accounts
 ```
  General Sales Tax 
 ```
@@ -237,7 +237,7 @@ Other Tax 2
 ---
 ---
 
-### 🏷️📑 Item Tax Template - Tax Masters
+### 9- 🏷️📑 Item Tax Template - Tax Masters
 ➡ Create Tax Templates     
 ➡ Attach with Item     
 
