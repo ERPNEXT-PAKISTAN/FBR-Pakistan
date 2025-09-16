@@ -170,7 +170,7 @@ bench migrate && bench restart
 #### 🛠️ ➡ handler.py
 #### 🛠️ ➡ hooks.py
 #### 🛠️ ➡ fbr_api.py
-#### 🛠️ ➡ F R Tax Calculation.py
+#### 🛠️ ➡ FBR Tax Calculation.py
 #### 🛠️ ➡ FBR Tax Calculation Clear/Refresh.js
 #### 🛠️ ➡ Send to FBR.js
 ---
@@ -178,7 +178,7 @@ bench migrate && bench restart
 
 #### 🏷️ Tax Rate Fields :
 ```
- Sales Tax Rate 
+Sales Tax Rate 
 ```
 ```
 Further Tax Rate
@@ -221,7 +221,7 @@ Other Tax 2
 ---
 ### 8- 📑 Chart of Account - Create GL Tax Accounts
 ```
- General Sales Tax 
+General Sales Tax 
 ```
 ```
 Further Tax
@@ -251,7 +251,7 @@ Other Tax 2
 ---
 
 ```
- HS Code 
+HS Code 
 ```
 ```
 HS Code Detail
