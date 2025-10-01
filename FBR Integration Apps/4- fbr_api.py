@@ -5,16 +5,42 @@ import urllib3
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
+def safe_float(val):
+    """Return float value if valid, else 0. Blank, None, negative, or invalid string returns 0."""
+    try:
+        num = float(val)
+        return num if num >= 0 else 0
+    except (TypeError, ValueError):
+        return 0
+
+def extra_tax_value(val, sale_type_str):
+    """
+    Logic:
+    - If reduced rate sale type, return ""
+    - If blank/None/zero/negative, return ""
+    - Otherwise, return float value
+    """
+    reduced_types = ("goodsatreducedrate", "reducedrate", "rr")
+    if sale_type_str in reduced_types:
+        return ""
+    try:
+        num = float(val)
+        if num <= 0:
+            return ""
+        return num
+    except (TypeError, ValueError):
+        return ""
+
 def send_invoice_to_fbr(doc, method=None):
     try:
         settings = frappe.get_single("FBR Invoice Settings")
 
-        # Use 'enabled' instead of 'enable_fbr_integration'
+        # FBR integration toggle
         if not settings.enabled:
             frappe.logger().info("FBR Integration Disabled")
             return
 
-        # Dynamic API URL and Token selection
+        # API URL and Token selection
         if settings.integration_type == "Sandbox":
             api_url = settings.sandbox_api_url
             token = settings.sandbox_security_token
@@ -24,55 +50,65 @@ def send_invoice_to_fbr(doc, method=None):
         else:
             frappe.throw("Invalid FBR integration type. Please set to Sandbox or Production.")
 
-        # --- Get seller and buyer address ---
+        # --- Seller and Buyer Address ---
         seller_address = ""
+        seller_province = ""
         if getattr(doc, "company_address", None):
             company_address_doc = frappe.get_doc("Address", doc.company_address)
             seller_address = f"{company_address_doc.address_line1}, {company_address_doc.city}"
+            seller_province = company_address_doc.state
 
         buyer_address = ""
+        buyer_province = ""
         if getattr(doc, "customer_address", None):
             customer_address_doc = frappe.get_doc("Address", doc.customer_address)
             buyer_address = f"{customer_address_doc.address_line1}, {customer_address_doc.city}"
+            buyer_province = customer_address_doc.state
 
-        # --- Build items list ---
-        items_list = [
-            {
+        # --- Build items list dynamically from doc.items ---
+        items_list = []
+        for item in doc.items:
+            sale_type_str = str(item.custom_sale_type or "").lower().replace(" ", "")
+            extra_tax = extra_tax_value(item.custom_extra_tax, sale_type_str)
+            # --- Rate field logic ---
+            if doc.custom_scenario_id == "SN006":
+                rate_val = "Exempt"
+            else:
+                rate_val = "{:.2f}%".format(safe_float(item.custom_sales_tax_rate))
+            items_list.append({
                 "hsCode": item.custom_hs_code,
                 "productDescription": item.item_name,
-                "rate": "{:.2f}%".format(item.custom_sales_tax_rate or 0),
+                "rate": rate_val,
                 "uoM": item.custom_fbr_uom,
-                "quantity": item.qty,
-                "totalValues": item.custom_tax_inclusive_amount,
-                "valueSalesExcludingST": item.amount,
-                "fixedNotifiedValueOrRetailPrice": item.rate,
-                "salesTaxApplicable": item.custom_sales_tax,
-                "salesTaxWithheldAtSource": 0,  # Static
-                "extraTax": item.custom_extra_tax,
-                "furtherTax": item.custom_further_tax,
+                "quantity": safe_float(item.qty),
+                "totalValues": safe_float(item.custom_tax_inclusive_amount),
+                "valueSalesExcludingST": safe_float(item.amount),
+                "fixedNotifiedValueOrRetailPrice": safe_float(item.rate),
+                "salesTaxApplicable": safe_float(item.custom_sales_tax),
+                "salesTaxWithheldAtSource": 0,
+                "extraTax": extra_tax,
+                "furtherTax": safe_float(item.custom_further_tax),
                 "sroScheduleNo": item.custom_sro_schedule_no,
-                "fedPayable": 0,  # Static
-                "discount": item.discount_amount,
+                "fedPayable": 0,
+                "discount": safe_float(item.discount_amount),
                 "saleType": item.custom_sale_type,
                 "sroItemSerialNo": item.custom_sro_item_sno
-            }
-            for item in doc.items
-        ]
+            })
 
         payload = {
             "invoiceType": doc.custom_invoice_type,
             "invoiceDate": str(doc.posting_date),
             "sellerNTNCNIC": doc.company_tax_id,
             "sellerBusinessName": doc.company,
-            "sellerProvince": frappe.get_doc("Address", doc.company_address).state if getattr(doc, "company_address", None) else "",
             "sellerAddress": seller_address,
+            "sellerProvince": seller_province,
             "buyerNTNCNIC": doc.tax_id,
             "buyerBusinessName": doc.customer,
-            "buyerProvince": frappe.get_doc("Address", doc.customer_address).state if getattr(doc, "customer_address", None) else "",
             "buyerAddress": buyer_address,
-            "buyerRegistrationType": doc.custom_tax_payer_type,
+            "buyerProvince": buyer_province,
             "invoiceRefNo": doc.name,
             "scenarioId": doc.custom_scenario_id,
+            "buyerRegistrationType": doc.custom_tax_payer_type,
             "items": items_list
         }
 
@@ -124,7 +160,7 @@ def send_invoice_to_fbr(doc, method=None):
                             <b>FBR Invoice No:</b> {fbr_invoice_no}
                         </p>
                         <p style="color:green;">
-                            ☑ Thank you for staying compliant and digital by Fibersoft ERP-Pakistan!
+                            ☑ Thank you for staying compliant and digital by Tech Craft Pvt Ltd ERP-Pakistan!
                         </p>
                     </div>
                 """,
