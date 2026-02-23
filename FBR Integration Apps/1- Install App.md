@@ -168,9 +168,9 @@ bench migrate && bench restart
 ---
 
 ### 7- 🚀 **Install the Following Script**
-#### 🛠️ ➡ handler.py              --> `handler.py`
-#### 🛠️ ➡ hooks.py                --> `hooks.py`
-#### 🛠️ ➡ fbr_api.py              --> `fbr_api.py`
+#### 🛠️ ➡ handler.py              --> `nano handler.py`
+#### 🛠️ ➡ hooks.py                --> `nano hooks.py`
+#### 🛠️ ➡ fbr_api.py              --> `nano fbr_api.py`
 #### 🛠️ ➡ FBR Tax Calculation.py
 #### 🛠️ ➡ FBR Tax Calculation Clear/Refresh.js
 #### 🛠️ ➡ Send to FBR.js
