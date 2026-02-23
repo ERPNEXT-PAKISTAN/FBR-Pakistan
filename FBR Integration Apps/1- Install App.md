@@ -109,7 +109,7 @@ bench migrate && bench restart
 
 ---
 
-### 4- 📑🏗️ 🏷️ Create Field on Sales Invoice & on Master :
+### 4- 📑🏗️ 🏷️ Create Field on Sales Invoice, Sales Invoice Item & on Item Master :
 
 
 | Field Name           |   Create & Link On    |   Type    |     Option          |    Fetch From              |  Select Field       |  Create On          | 
