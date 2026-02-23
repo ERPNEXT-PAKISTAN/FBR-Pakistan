@@ -163,13 +163,14 @@ bench migrate && bench restart
  `Rate     ➡ Tax Exclusive Rate`
  `Amount   ➡ Change to Tax Exclusive Amount`  
 ```
+
 ---
 ---
 
 ### 7- 🚀 **Install the Following Script**
-#### 🛠️ ➡ handler.py
-#### 🛠️ ➡ hooks.py
-#### 🛠️ ➡ fbr_api.py
+#### 🛠️ ➡ handler.py              --> `handler.py`
+#### 🛠️ ➡ hooks.py                --> `hooks.py`
+#### 🛠️ ➡ fbr_api.py              --> `fbr_api.py`
 #### 🛠️ ➡ FBR Tax Calculation.py
 #### 🛠️ ➡ FBR Tax Calculation Clear/Refresh.js
 #### 🛠️ ➡ Send to FBR.js
