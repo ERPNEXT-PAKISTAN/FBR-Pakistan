@@ -53,7 +53,7 @@ FBR Integration is a Frappe/ERPNext v15 application for submitting Sales Invoice
 ```
 cd ~/frappe-bench
 bench get-app https://github.com/ERPNEXT-PAKISTAN/FBR_Integration.git --branch main
-bench --site erpnext.local install-app fbr_integration
+bench --site site1.local install-app fbr_integration
 bench migrate
 bench restart
 ```
