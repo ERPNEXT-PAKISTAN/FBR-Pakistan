@@ -49,20 +49,13 @@ FBR Integration is a Frappe/ERPNext v15 application for submitting Sales Invoice
 ## Installation
 
 ### 1) Get the app
-```bash
+
+```
 cd ~/frappe-bench
-bench get-app https://github.com/<your-org-or-user>/fbr_integration.git
-```
-### 2) Install on your site
-```
-bench --site <site-name> install-app fbr_integration
-```
-### 3) Apply migrations + build assets
-```
-bench --site <site-name> migrate
-bench build
+bench get-app https://github.com/ERPNEXT-PAKISTAN/FBR_Integration.git --branch main
+bench --site erpnext.local install-app fbr_integration
+bench migrate
 bench restart
-bench --site <site-name> clear-cache
 ```
 ## System Dependencies (Required)
 #### wkhtmltopdf (patched)
@@ -72,10 +65,10 @@ bench --site <site-name> clear-cache
 ```
 sudo apt install -y fontconfig xfonts-75dpi xfonts-base \
   libxrender1 libxext6 libfontconfig1 libfreetype6 libjpeg-turbo8
-
+```
 wget -O wkhtmltox.deb \
 https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_0.12.6.1-2.jammy_amd64.deb
-
+```
 sudo apt install -y ./wkhtmltox.deb
 wkhtmltopdf --version
 ```
