@@ -52,7 +52,7 @@ FBR Integration is a Frappe/ERPNext v15 application for submitting Sales Invoice
 ```bash
 cd ~/frappe-bench
 bench get-app https://github.com/<your-org-or-user>/fbr_integration.git
-
+```
 ### 2) Install on your site
 ```
 bench --site <site-name> install-app fbr_integration
@@ -79,6 +79,7 @@ https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6.1-2/wkhtmltox_
 sudo apt install -y ./wkhtmltox.deb
 wkhtmltopdf --version
 ```
+
 ##### Then set Bench Config:
 ```
 bench set-config -g wkhtmltopdf_path "$(which wkhtmltopdf)"
