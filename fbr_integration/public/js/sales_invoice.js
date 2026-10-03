@@ -43,7 +43,11 @@ function calculate_tax_preview(frm, cdt, cdn) {
 
 		rows.forEach((tax) => {
 			// Update these labels if your Chart of Accounts tax names differ
-			if (tax.tax_type.includes("General Sales Tax")) {
+			if (
+				tax.tax_type.includes("General Sales Tax") ||
+				tax.tax_type.startsWith("Sales Tax -") ||
+				tax.tax_type.startsWith("GST -")
+			) {
 				sales = (amount * (tax.tax_rate || 0)) / 100;
 			} else if (tax.tax_type.includes("Further Tax")) {
 				further = (amount * (tax.tax_rate || 0)) / 100;
@@ -87,47 +91,64 @@ frappe.ui.form.on("Sales Invoice", {
 				return;
 			}
 
-			frappe.confirm(
-				__("Send Sales Invoice {0} to FBR? This action cannot be undone.", [frm.doc.name]),
-				function () {
-					frappe.call({
-						method: "fbr_integration.fbr_integration.handler.send_to_fbr_si",
-						args: { name: frm.doc.name },
-						freeze: true,
-						freeze_message: __("Sending invoice to FBR..."),
-						callback: function (r) {
-							if (!r || !r.message) {
-								frappe.msgprint({
-									title: __("Error"),
-									indicator: "red",
-									message: __("No response received from the server."),
-								});
-								return;
-							}
+			frappe.call({
+				method: "fbr_integration.fbr_integration.handler.prepare_fbr_si",
+				args: { name: frm.doc.name },
+				freeze: true,
+				freeze_message: __("Preparing FBR invoice preview..."),
+				callback: function (r) {
+					let preview = r && r.message;
+					if (!preview || preview.success === false) {
+						frappe.msgprint({
+							title: __("FBR Error"),
+							indicator: "red",
+							message: frappe.utils.escape_html((preview && preview.error) || __("Could not prepare the FBR payload.")),
+						});
+						return;
+					}
 
-							let resp = r.message;
-							if (resp.success === false) {
-								frappe.msgprint({
-									title: __("FBR Error"),
-									indicator: "red",
-									message: `<pre>${frappe.utils.escape_html(resp.error || "")}</pre>`,
-								});
-								return;
-							}
+					frm.doc.custom_fbr_invoice_date = preview.invoice_date;
+					frm.doc.custom_fbr_invoice_ref_no = preview.invoice_ref_no;
+					frm.doc.custom_fbr_request_payload = preview.payload_json;
+					frm.refresh_fields();
 
-							frappe.msgprint({
-								title: __("Invoice Sent"),
-								indicator: "green",
-								message: __(
-									"Sales Invoice {0} was submitted to the IRIS FBR Portal.<br>FBR Invoice No: <b>{1}</b>",
-									[frm.doc.name, resp.invoice_no]
-								),
+					let payload = frappe.utils.escape_html(preview.payload_json);
+					frappe.confirm(
+						__("Review the exact payload below. Send this invoice to FBR?<pre style='max-height: 55vh; overflow: auto; white-space: pre-wrap; text-align: left;'>") +
+							payload + "</pre>",
+						function () {
+							frappe.call({
+								method: "fbr_integration.fbr_integration.handler.send_to_fbr_si",
+								args: { name: frm.doc.name },
+								freeze: true,
+								freeze_message: __("Sending invoice to FBR..."),
+								callback: function (send_response) {
+									let result = send_response && send_response.message;
+									if (!result || result.success === false) {
+										frappe.msgprint({
+											title: __("FBR Error"),
+											indicator: "red",
+											message: `<pre>${frappe.utils.escape_html((result && result.error) || __("No response received from the server."))}</pre>`,
+										});
+										frm.reload_doc();
+										return;
+									}
+
+									frappe.msgprint({
+										title: __("Invoice Sent"),
+										indicator: "green",
+										message: __(
+											"Sales Invoice {0} was submitted to the IRIS FBR Portal.<br>FBR Invoice No: <b>{1}</b>",
+											[frm.doc.name, result.invoice_no]
+										),
+									});
+									frm.reload_doc();
+								},
 							});
-							frm.reload_doc();
-						},
-					});
-				}
-			);
+						}
+					);
+				},
+			});
 		});
 
 		btn.removeClass("btn-default").addClass("btn-primary");
