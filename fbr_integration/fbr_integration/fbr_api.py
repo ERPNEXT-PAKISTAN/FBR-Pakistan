@@ -13,6 +13,7 @@ import requests
 import urllib3
 from erpnext.accounts.utils import get_fiscal_year
 from frappe.model.naming import getseries
+from frappe.utils import cint
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -88,6 +89,7 @@ def build_address(address_name):
 def build_payload(doc):
 	seller_address, seller_province = build_address(getattr(doc, "company_address", None))
 	buyer_address, buyer_province = build_address(getattr(doc, "customer_address", None))
+	seller_ntn_cnic = frappe.db.get_value("Company", doc.company, "tax_id") or ""
 	scenario_link = doc.get("custom_scenario_id")
 	scenario_id = frappe.db.get_value("Scenario ID", scenario_link, "scenario_id") or scenario_link
 
@@ -115,11 +117,8 @@ def build_payload(doc):
 			"hsCode": item.get("custom_hs_code"),
 			"productDescription": item.item_name,
 			"rate": rate_val,
-			"uoM": item.get("custom_fbr_uom"),
+			"uoM": item.get("uom"),
 			"quantity": safe_float(item.qty),
-			# "totalValues": safe_float(
-			# 	fbr_value(item, "custom_fbr_total_values", item.get("custom_tax_inclusive_amount"))
-			# ),
 			"totalValues": safe_float(item.get("custom_tax_inclusive_amount")),
 			"valueSalesExcludingST": safe_float(
 				fbr_value(item, "custom_fbr_value_sales_excluding_st", item.amount)
@@ -153,7 +152,7 @@ def build_payload(doc):
 	return {
 		"invoiceType": doc.get("custom_invoice_type"),
 		"invoiceDate": frappe.utils.getdate(doc.custom_fbr_invoice_date).strftime("%Y-%m-%d"),
-		"sellerNTNCNIC": doc.company_tax_id,
+		"sellerNTNCNIC": seller_ntn_cnic,
 		"sellerBusinessName": doc.company,
 		"sellerAddress": seller_address,
 		"sellerProvince": seller_province,
@@ -172,19 +171,38 @@ def build_payload(doc):
 	}
 
 
-def prepare_fbr_request(doc):
+def prepare_fbr_request(doc, force_rebuild=False):
 	if not doc.get("custom_fbr_invoice_date"):
-		doc.custom_fbr_invoice_date = frappe.utils.today()
+		doc.custom_fbr_invoice_date = doc.get("posting_date") or frappe.utils.today()
 
-	if not doc.get("custom_fbr_invoice_ref_no"):
-		fiscal_year = get_fiscal_year(frappe.utils.today(), company=doc.company, as_dict=True)
+	reference_was_generated = doc.get("custom_fbr_invoice_ref_no") in (None, "", 0, "0")
+	if reference_was_generated:
+		invoice_date = frappe.utils.getdate(doc.custom_fbr_invoice_date or doc.get("posting_date"))
+		fiscal_year = get_fiscal_year(invoice_date, company=doc.company, as_dict=True)
 		year_suffix = frappe.utils.getdate(fiscal_year.year_end_date).strftime("%y")
-		sequence = getseries(f"FBR-SI-{year_suffix}", 3)
+		series_key = f"FBR-SI-{year_suffix}"
+		series_exists = frappe.db.sql("select 1 from `tabSeries` where name = %s", series_key)
+		if not series_exists:
+			settings = frappe.get_single("FBR Invoice Settings")
+			starting_sequence = 1
+			if settings.fbr_invoice_ref_start_fiscal_year == fiscal_year.name:
+				starting_sequence = max(cint(settings.fbr_invoice_ref_start_sequence), 1)
+
+			frappe.db.sql(
+				"INSERT IGNORE INTO `tabSeries` (`name`, `current`) VALUES (%s, %s)",
+				(series_key, starting_sequence - 1),
+			)
+
+		sequence = getseries(series_key, 3)
 		doc.custom_fbr_invoice_ref_no = f"{year_suffix}{sequence}"
 
-	if doc.get("custom_fbr_request_payload"):
+	if doc.get("custom_fbr_request_payload") and not force_rebuild:
 		payload_json = doc.custom_fbr_request_payload
 		payload = json.loads(payload_json)
+		if reference_was_generated:
+			payload["invoiceRefNo"] = doc.custom_fbr_invoice_ref_no
+			payload["invoiceDate"] = frappe.utils.getdate(doc.custom_fbr_invoice_date).strftime("%Y-%m-%d")
+			payload_json = json.dumps(payload, ensure_ascii=False, allow_nan=False, indent=2)
 	else:
 		payload = build_payload(doc)
 		payload_json = json.dumps(payload, ensure_ascii=False, allow_nan=False, indent=2)
