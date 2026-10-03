@@ -19,16 +19,18 @@ calculation, the FBR API client, and the client-side "Send to FBR" button.
   again on save (server-side, authoritative)
 - **Full FBR response stored** on the Sales Invoice (invoice no., status,
   status code, per-item statuses, raw response)
-- **9 FBR master doctypes** shipped with the app: HS Code, Scenario ID,
-  FBR UoM, SRO Item SNo, SRO Schedule No, Sale Type, Tax Payer Type,
+- **8 FBR master doctypes** shipped with the app: HS Code, Scenario ID,
+  SRO Item SNo, SRO Schedule No, Sale Type, Tax Payer Type,
   Invoice Type, Buyer Province
 - **Master data auto-loaded on install** from the official FBR CSVs
-  (HS Codes, scenarios, provinces, UoMs, etc. — no manual Data Import needed)
+   (including replacing ERPNext UOM records with FBR units in the `FBR UoM`
+   category — no manual Data Import needed)
 - **FBR Invoice Settings** — single doctype to toggle Sandbox/Production and
   store API URL + Security Token (stored as a Password field)
 - Custom fields wired onto **Item**, **Customer**, **Sales Invoice**, and
   **Sales Invoice Item** with `fetch_from` so HS Code/UoM/Sale Type/Tax Payer
   Type/Buyer Province flow automatically from the Item and Customer masters
+- Item's read-only FBR UOM mirrors `stock_uom`; invoice payloads use the row UOM
 
 ---
 
@@ -95,12 +97,17 @@ now targets **Python 3.14** to match Frappe v16's runtime requirement.
 3. Set **Integration Type** to `Sandbox` or `Production`.
 4. Fill in the matching **API URL** and **Security Token** (token is stored
    as a Password field, not shown in the UI once saved).
+5. To continue FBR numbering after a site reinstall, select the applicable
+   **Starting Sequence Fiscal Year** and set **Starting Sequence** to the next
+   unused number before generating a reference for that year. For example,
+   select FY 2026-27 and enter `5` to generate `27005`; other fiscal years
+   default to `001`.
 
 ---
 
 ## Usage
 
-1. On the **Item** master, set HS Code / FBR UoM / Sale Type / SRO Schedule
+1. On the **Item** master, set HS Code / Stock UOM / Sale Type / SRO Schedule
    No / SRO Item SNo. On the **Customer** master, set Tax Payer Type / Buyer
    Province. These fetch automatically onto new Sales Invoices and their
    items.
@@ -115,10 +122,12 @@ now targets **Python 3.14** to match Frappe v16's runtime requirement.
 ## Reference data
 
 Master data (HS Codes, Scenario IDs, Buyer Provinces, Sale Types, Tax Payer
-Types, Invoice Types, FBR UoM, SRO Schedule/Item numbers) is imported
-automatically the first time the app is installed, from the CSVs in
-`fbr_integration/data/`. To refresh it later (e.g. after an FBR HS Code
-update), re-run:
+Types, Invoice Types, and SRO Schedule/Item numbers) is imported automatically
+the first time the app is installed from the CSVs in `fbr_integration/data/`.
+The `fbr_uom.csv` list replaces ERPNext's standard UOM records, so install the
+app on a fresh site before creating Items or transactions. Re-running the
+installation function will again replace non-FBR UOM records. To refresh
+master data later (e.g. after an FBR HS Code update), run:
 
 ```bash
 bench --site site1.local execute fbr_integration.setup.install.after_install
