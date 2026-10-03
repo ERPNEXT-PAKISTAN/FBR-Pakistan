@@ -172,8 +172,8 @@ def build_payload(doc):
 
 
 def prepare_fbr_request(doc, force_rebuild=False):
-	if not doc.get("custom_fbr_invoice_date"):
-		doc.custom_fbr_invoice_date = doc.get("posting_date") or frappe.utils.today()
+	if force_rebuild or not doc.get("custom_fbr_invoice_date"):
+		doc.custom_fbr_invoice_date = frappe.utils.today()
 
 	reference_was_generated = doc.get("custom_fbr_invoice_ref_no") in (None, "", 0, "0")
 	if reference_was_generated:
