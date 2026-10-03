@@ -45,6 +45,9 @@ fixtures = [
 #    automatic submit-time push. Uncomment on_submit below if you prefer the
 #    invoice to be sent to FBR automatically the moment it is submitted.
 doc_events = {
+	"Item": {
+		"before_validate": "fbr_integration.setup.install.sync_item_fbr_uom",
+	},
 	"Sales Invoice": {
 		"before_validate": "fbr_integration.fbr_integration.tax_calculation.apply_unregistered_tax_templates",
 		"before_save": "fbr_integration.fbr_integration.tax_calculation.calculate_fbr_taxes",
