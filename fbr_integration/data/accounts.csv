@@ -13,6 +13,8 @@ Sales Tax - 20%,Sales Tax on Goods,Liability,0,Tax,20
 Sales Tax - 25%,Sales Tax on Goods,Liability,0,Tax,25
 Further Tax - 4% on Unregistered Supplies,Sales Tax on Goods,Liability,0,Tax,4
 Extra Tax - 2% for Industry Specific,Sales Tax on Goods,Liability,0,Tax,2
+Other Tax 1 - 1% on Unregistered Supplies,Sales Tax on Goods,Liability,0,Tax,1
+Other Tax 2 - 2% on Unregistered Supplies,Sales Tax on Goods,Liability,0,Tax,2
 Sales Tax on Services,Duties and Taxes,Liability,1,Tax,
 Punjab Revenue Authority (PRA),Sales Tax on Services,Liability,1,Tax,
 PRA Sales Tax - 0% Export for IT,Punjab Revenue Authority (PRA),Liability,0,Tax,0
