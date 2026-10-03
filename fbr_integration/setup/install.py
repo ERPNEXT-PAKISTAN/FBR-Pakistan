@@ -38,9 +38,14 @@ def after_install():
 	_load_accounts()
 	_create_default_settings()
 	_create_item_tax_templates_from_accounts()
+	_create_unregistered_item_tax_templates()
 	_create_tax_category()
 
 	frappe.db.commit()
+
+
+def after_migrate():
+	_create_unregistered_item_tax_templates()
 
 
 def _load_accounts():
@@ -309,6 +314,110 @@ def _create_item_tax_templates_from_accounts():
 				title=f"{sales.account_name} (Unregistered + Extra)",
 				taxes=unregistered_extra,
 			)
+
+
+def _create_unregistered_item_tax_templates():
+	for company in frappe.get_all("Company", pluck="name"):
+		further_tax = _ensure_unregistered_tax_account(company)
+		if not further_tax:
+			continue
+
+		for template_row in frappe.get_all(
+			"Item Tax Template", filters={"company": company}, fields=["name", "title"]
+		):
+			title = template_row.title or template_row.name
+			if title.casefold().endswith(
+				(" (registered)", " (registered + extra)", " (unregistered)", " (unregistered + extra)")
+			):
+				continue
+
+			unregistered_title = f"{title} (Unregistered)"
+			if frappe.db.exists("Item Tax Template", {"title": unregistered_title, "company": company}):
+				continue
+
+			source = frappe.get_doc("Item Tax Template", template_row.name)
+			if any("further tax" in (tax.tax_type or "").casefold() for tax in source.taxes):
+				continue
+
+			taxable_sales_tax = any(
+				any(label in (tax.tax_type or "").casefold() for label in ("sales tax", "gst"))
+				for tax in source.taxes
+			)
+			if not taxable_sales_tax:
+				continue
+
+			variant = frappe.new_doc("Item Tax Template")
+			variant.title = unregistered_title
+			variant.company = company
+			if source.meta.has_field("tax_category"):
+				variant.tax_category = source.get("tax_category")
+
+			for tax in source.taxes:
+				variant.append(
+					"taxes",
+					{
+						"tax_type": tax.tax_type,
+						"tax_rate": tax.tax_rate,
+						"not_applicable": tax.not_applicable,
+					},
+				)
+
+			variant.append(
+				"taxes",
+				{
+					"tax_type": further_tax.name,
+					"tax_rate": further_tax.tax_rate,
+					"not_applicable": 0,
+				},
+			)
+			variant.insert(ignore_permissions=True)
+
+
+def _ensure_unregistered_tax_account(company):
+	account_name = "Further Tax - 4% on Unregistered Supplies"
+	account = frappe.db.get_value(
+		"Account",
+		{"company": company, "account_name": account_name, "is_group": 0},
+		"name",
+	)
+	if account:
+		tax_rate = 4
+		if frappe.get_meta("Account").has_field("tax_rate"):
+			tax_rate = flt(frappe.db.get_value("Account", account, "tax_rate") or 4)
+		return frappe._dict(name=account, tax_rate=tax_rate)
+
+	parent = None
+	for parent_name in ("Sales Tax on Goods", "Duties and Taxes"):
+		parent = frappe.db.get_value(
+			"Account",
+			{"company": company, "account_name": parent_name, "is_group": 1},
+			"name",
+		)
+		if parent:
+			break
+
+	if not parent:
+		parent = frappe.db.get_value(
+			"Account", {"company": company, "account_type": "Tax", "is_group": 1}, "name"
+		)
+	if not parent:
+		frappe.log_error(
+			f"No tax liability group exists for company {company}.",
+			"fbr_integration: Further Tax account not created",
+		)
+		return None
+
+	doc = frappe.new_doc("Account")
+	doc.account_name = account_name
+	doc.company = company
+	doc.parent_account = parent
+	doc.root_type = "Liability"
+	doc.account_type = "Tax"
+	doc.is_group = 0
+	if frappe.get_meta("Account").has_field("tax_rate"):
+		doc.tax_rate = 4
+	doc.insert(ignore_permissions=True)
+	return frappe._dict(name=doc.name, tax_rate=4)
 
 
 def _create_tax_category():
