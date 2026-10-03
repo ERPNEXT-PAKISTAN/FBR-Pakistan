@@ -4,7 +4,7 @@
 Runs once, right after `bench --site <site> install-app fbr_integration`.
 
 Loads the FBR reference/master data (HS Codes, Scenario IDs, Buyer
-Provinces, Sale Types, Tax Payer Types, Invoice Types, FBR UoM, SRO
+Provinces, Sale Types, Tax Payer Types, Invoice Types, FBR UOMs, SRO
 Schedule/Item numbers) shipped as CSVs in fbr_integration/data/, so the app
 is usable immediately without a manual Data Import.
 """
@@ -20,7 +20,6 @@ DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data")
 # doctype -> (csv filename, [fieldnames in column order])
 MASTER_DATA_MAP = {
 	"Buyer Province": ("buyer_province.csv", ["buyer_province"]),
-	"FBR UoM": ("fbr_uom.csv", ["fbr_uom"]),
 	"Invoice Type": ("invoice_type.csv", ["invoice_type"]),
 	"Sale Type": ("sale_type.csv", ["sale_type"]),
 	"SRO Item SNo": ("sro_item_sno.csv", ["sro_item_sno"]),
@@ -35,6 +34,7 @@ def after_install():
 	for doctype, (filename, fieldnames) in MASTER_DATA_MAP.items():
 		_load_master_csv(doctype, filename, fieldnames)
 
+	_configure_fbr_uoms()
 	_load_accounts()
 	_create_default_settings()
 	_create_item_tax_templates_from_accounts()
@@ -44,8 +44,52 @@ def after_install():
 	frappe.db.commit()
 
 
+def _configure_fbr_uoms():
+	path = os.path.join(DATA_DIR, "fbr_uom.csv")
+	if not os.path.exists(path):
+		return
+
+	with open(path, newline="", encoding="utf-8-sig") as f:
+		reader = csv.reader(f)
+		next(reader, None)
+		uom_names = list(dict.fromkeys(row[0].strip() for row in reader if row and row[0].strip()))
+	if not uom_names:
+		return
+
+	category_name = "FBR UoM"
+	category = frappe.db.get_value("UOM Category", {"category_name": category_name}, "name")
+	if not category:
+		category_doc = frappe.new_doc("UOM Category")
+		category_doc.category_name = category_name
+		category_doc.insert(ignore_permissions=True)
+		category = category_doc.name
+
+	for uom_name in uom_names:
+		if frappe.db.exists("UOM", uom_name):
+			frappe.db.set_value(
+				"UOM", uom_name, {"category": category, "enabled": 1}, update_modified=False
+			)
+			continue
+
+		uom = frappe.new_doc("UOM")
+		uom.uom_name = uom_name
+		uom.category = category
+		uom.insert(ignore_permissions=True)
+
+	allowed_uoms = set(uom_names)
+	for existing_uom in frappe.get_all("UOM", pluck="name"):
+		if existing_uom not in allowed_uoms:
+			frappe.delete_doc("UOM", existing_uom, force=True, ignore_permissions=True)
+
+
 def after_migrate():
+	_configure_fbr_uoms()
 	_create_unregistered_item_tax_templates()
+
+
+def sync_item_fbr_uom(doc, method=None):
+	if doc.get("stock_uom"):
+		doc.custom_fbr_uom = doc.stock_uom
 
 
 def _load_accounts():
