@@ -22,7 +22,7 @@ def prepare_fbr_si(name):
 		if doc.custom_fbr_invoice_no:
 			return {"success": False, "error": frappe._("This invoice was already sent to FBR.")}
 
-		payload, payload_json = prepare_fbr_request(doc)
+		payload, payload_json = prepare_fbr_request(doc, force_rebuild=True)
 		return {
 			"success": True,
 			"invoice_date": doc.custom_fbr_invoice_date,
