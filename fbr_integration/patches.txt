@@ -1,1 +1,0 @@
-fbr_integration.patches.v1_0.remove_redundant_fbr_total_values
