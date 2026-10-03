@@ -20,7 +20,6 @@
   },
   {"label": "HS Code", "link_to": "HS Code", "link_type": "DocType", "onboard": 0, "type": "Link"},
   {"label": "Scenario ID", "link_to": "Scenario ID", "link_type": "DocType", "onboard": 0, "type": "Link"},
-  {"label": "FBR UoM", "link_to": "FBR UoM", "link_type": "DocType", "onboard": 0, "type": "Link"},
   {"label": "SRO Schedule No", "link_to": "SRO Schedule No", "link_type": "DocType", "onboard": 0, "type": "Link"},
   {"label": "SRO Item SNo", "link_to": "SRO Item SNo", "link_type": "DocType", "onboard": 0, "type": "Link"},
   {"label": "Sale Type", "link_to": "Sale Type", "link_type": "DocType", "onboard": 0, "type": "Link"},
