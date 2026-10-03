@@ -44,7 +44,8 @@
   "hidden": 0,
   "no_copy": 0,
   "allow_on_submit": 0,
-  "options": "FBR UoM"
+  "options": "UOM",
+  "fetch_from": "stock_uom.uom_name"
  },
  {
   "doctype": "Custom Field",
@@ -185,7 +186,8 @@
   "hidden": 0,
   "no_copy": 0,
   "allow_on_submit": 0,
-  "options": "Scenario ID"
+  "options": "Scenario ID",
+  "link_filters": "[[\"Scenario ID\", \"enable\", \"=\", 1]]"
  },
  {
   "doctype": "Custom Field",
@@ -542,29 +544,13 @@
  },
  {
   "doctype": "Custom Field",
-  "name": "Sales Invoice Item-custom_fbr_uom",
-  "dt": "Sales Invoice Item",
-  "fieldname": "custom_fbr_uom",
-  "label": "FBR UoM",
-  "fieldtype": "Link",
-  "insert_after": "custom_hs_code",
-  "reqd": 0,
-  "read_only": 0,
-  "in_list_view": 0,
-  "hidden": 0,
-  "no_copy": 0,
-  "allow_on_submit": 0,
-  "options": "FBR UoM",
-  "fetch_from": "item_code.custom_fbr_uom"
- },
- {
   "doctype": "Custom Field",
   "name": "Sales Invoice Item-custom_col_break_fbr_item_1",
   "dt": "Sales Invoice Item",
   "fieldname": "custom_col_break_fbr_item_1",
   "label": "",
   "fieldtype": "Column Break",
-  "insert_after": "custom_fbr_uom",
+  "insert_after": "custom_hs_code",
   "reqd": 0,
   "read_only": 0,
   "in_list_view": 0,
