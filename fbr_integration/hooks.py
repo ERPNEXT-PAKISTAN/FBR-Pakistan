@@ -46,7 +46,9 @@ fixtures = [
 #    invoice to be sent to FBR automatically the moment it is submitted.
 doc_events = {
 	"Sales Invoice": {
+		"before_validate": "fbr_integration.fbr_integration.tax_calculation.apply_unregistered_tax_templates",
 		"before_save": "fbr_integration.fbr_integration.tax_calculation.calculate_fbr_taxes",
+		"before_submit": "fbr_integration.fbr_integration.tax_calculation.calculate_fbr_taxes",
 		# "on_submit": "fbr_integration.fbr_integration.fbr_api.after_submit_invoice",
 	}
 }
@@ -54,6 +56,7 @@ doc_events = {
 # Installation
 # ------------
 after_install = "fbr_integration.setup.install.after_install"
+after_migrate = "fbr_integration.setup.install.after_migrate"
 
 # Whitelisted API surface used by the client script
 # --------------------------------------------------
