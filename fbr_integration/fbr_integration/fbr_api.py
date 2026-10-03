@@ -11,6 +11,8 @@ import json
 import frappe
 import requests
 import urllib3
+from erpnext.accounts.utils import get_fiscal_year
+from frappe.model.naming import getseries
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -24,6 +26,12 @@ def safe_float(val):
 		return num if num >= 0 else 0
 	except (TypeError, ValueError):
 		return 0
+
+
+def fbr_value(item, fieldname, fallback):
+	"""Use an explicit FBR payload override when present, otherwise use the invoice value."""
+	value = item.get(fieldname)
+	return fallback if value in (None, "", 0, "0") else value
 
 
 def extra_tax_value(val, sale_type_str):
@@ -73,13 +81,15 @@ def build_address(address_name):
 	if not address_name:
 		return "", ""
 	address_doc = frappe.get_doc("Address", address_name)
-	address_line = ", ".join(filter(None, [address_doc.address_line1, address_doc.city]))
+	address_line = ", ".join(dict.fromkeys(filter(None, [address_doc.address_line1, address_doc.city])))
 	return address_line, (address_doc.state or "")
 
 
 def build_payload(doc):
 	seller_address, seller_province = build_address(getattr(doc, "company_address", None))
 	buyer_address, buyer_province = build_address(getattr(doc, "customer_address", None))
+	scenario_link = doc.get("custom_scenario_id")
+	scenario_id = frappe.db.get_value("Scenario ID", scenario_link, "scenario_id") or scenario_link
 
 	# Prefer the explicit link fields when set; fall back to values fetched onto the address
 	seller_province = seller_province or ""
@@ -90,34 +100,59 @@ def build_payload(doc):
 		sale_type_str = str(item.get("custom_sale_type") or "").lower().replace(" ", "")
 		extra_tax = extra_tax_value(item.get("custom_extra_tax"), sale_type_str)
 
-		if doc.get("custom_scenario_id") == "SN006":
+		if scenario_id == "SN006":
 			rate_val = "Exempt"
 		else:
-			rate_val = "{:.2f}%".format(safe_float(item.get("custom_sales_tax_rate")))
+			rate_val = "{:g}%".format(safe_float(item.get("custom_sales_tax_rate")))
+		fixed_price = item.get("custom_fbr_fixed_notified_value_or_retail_price")
+		if fixed_price is None or fixed_price == "":
+			fixed_price = 0
+		discount = item.get("custom_fbr_discount")
+		if discount is None or discount == "":
+			discount = item.discount_amount
 
-		items_list.append({
+		payload_item = {
 			"hsCode": item.get("custom_hs_code"),
 			"productDescription": item.item_name,
 			"rate": rate_val,
 			"uoM": item.get("custom_fbr_uom"),
 			"quantity": safe_float(item.qty),
+			# "totalValues": safe_float(
+			# 	fbr_value(item, "custom_fbr_total_values", item.get("custom_tax_inclusive_amount"))
+			# ),
 			"totalValues": safe_float(item.get("custom_tax_inclusive_amount")),
-			"valueSalesExcludingST": safe_float(item.amount),
-			"fixedNotifiedValueOrRetailPrice": safe_float(item.rate),
-			"salesTaxApplicable": safe_float(item.get("custom_sales_tax")),
-			"salesTaxWithheldAtSource": 0,
+			"valueSalesExcludingST": safe_float(
+				fbr_value(item, "custom_fbr_value_sales_excluding_st", item.amount)
+			),
+			"fixedNotifiedValueOrRetailPrice": safe_float(fixed_price),
+			"salesTaxApplicable": safe_float(
+				fbr_value(item, "custom_fbr_sales_tax_applicable", item.get("custom_sales_tax"))
+			),
+			"salesTaxWithheldAtSource": safe_float(item.get("custom_fbr_sales_tax_withheld_at_source")),
 			"extraTax": extra_tax,
-			"furtherTax": safe_float(item.get("custom_further_tax")),
-			"sroScheduleNo": item.get("custom_sro_schedule_no"),
-			"fedPayable": 0,
-			"discount": safe_float(item.discount_amount),
+			"furtherTax": safe_float(
+				fbr_value(item, "custom_fbr_further_tax", item.get("custom_further_tax"))
+			),
+			"sroScheduleNo": item.get("custom_sro_schedule_no") or "",
+			"fedPayable": safe_float(item.get("custom_fbr_fed_payable")),
+			"discount": safe_float(discount),
 			"saleType": item.get("custom_sale_type"),
-			"sroItemSerialNo": item.get("custom_sro_item_sno"),
-		})
+			"sroItemSerialNo": item.get("custom_sro_item_sno") or "",
+		}
+
+		item_override = item.get("custom_fbr_payload_override")
+		if item_override:
+			if isinstance(item_override, str):
+				item_override = json.loads(item_override)
+			if not isinstance(item_override, dict):
+				frappe.throw(frappe._("FBR item payload override must be a JSON object."))
+			payload_item.update(item_override)
+
+		items_list.append(payload_item)
 
 	return {
 		"invoiceType": doc.get("custom_invoice_type"),
-		"invoiceDate": str(doc.posting_date),
+		"invoiceDate": frappe.utils.getdate(doc.custom_fbr_invoice_date).strftime("%Y-%m-%d"),
 		"sellerNTNCNIC": doc.company_tax_id,
 		"sellerBusinessName": doc.company,
 		"sellerAddress": seller_address,
@@ -126,16 +161,58 @@ def build_payload(doc):
 		"buyerBusinessName": doc.customer,
 		"buyerAddress": buyer_address,
 		"buyerProvince": buyer_province,
-		"invoiceRefNo": doc.name,
-		"scenarioId": doc.get("custom_scenario_id"),
-		"buyerRegistrationType": doc.get("custom_tax_payer_type"),
+		"invoiceRefNo": doc.custom_fbr_invoice_ref_no,
+		"scenarioId": scenario_id,
+		"buyerRegistrationType": (
+			"Registered" if doc.get("custom_tax_payer_type") == "Registered" else "Unregistered"
+			if doc.get("custom_tax_payer_type")
+			else ""
+		),
 		"items": items_list,
 	}
 
 
+def prepare_fbr_request(doc):
+	if not doc.get("custom_fbr_invoice_date"):
+		doc.custom_fbr_invoice_date = frappe.utils.today()
+
+	if not doc.get("custom_fbr_invoice_ref_no"):
+		fiscal_year = get_fiscal_year(frappe.utils.today(), company=doc.company, as_dict=True)
+		year_suffix = frappe.utils.getdate(fiscal_year.year_end_date).strftime("%y")
+		sequence = getseries(f"FBR-SI-{year_suffix}", 3)
+		doc.custom_fbr_invoice_ref_no = f"{year_suffix}{sequence}"
+
+	if doc.get("custom_fbr_request_payload"):
+		payload_json = doc.custom_fbr_request_payload
+		payload = json.loads(payload_json)
+	else:
+		payload = build_payload(doc)
+		payload_json = json.dumps(payload, ensure_ascii=False, allow_nan=False, indent=2)
+		doc.custom_fbr_request_payload = payload_json
+
+	frappe.db.set_value(
+		"Sales Invoice",
+		doc.name,
+		{
+			"custom_fbr_invoice_date": doc.custom_fbr_invoice_date,
+			"custom_fbr_invoice_ref_no": doc.custom_fbr_invoice_ref_no,
+			"custom_fbr_request_payload": payload_json,
+		},
+		update_modified=False,
+	)
+	return payload, payload_json
+
+
+def _set_fbr_response(doc, values):
+	frappe.db.set_value("Sales Invoice", doc.name, values, update_modified=False)
+	doc.update(values)
+
+
 def send_invoice_to_fbr(doc, method=None):
 	settings, api_url, token = get_fbr_settings()
-	payload = build_payload(doc)
+	_, payload_json = prepare_fbr_request(doc)
+	if token.strip().lower().startswith("bearer "):
+		token = token.strip()[7:].strip()
 
 	headers = {
 		"Authorization": f"Bearer {token}",
@@ -145,15 +222,48 @@ def send_invoice_to_fbr(doc, method=None):
 	frappe.logger().info(f"Sending Sales Invoice {doc.name} to FBR ({settings.integration_type})")
 
 	try:
-		response = requests.post(api_url, headers=headers, json=payload, verify=bool(settings.ssl_applied))
+		response = requests.post(
+			api_url,
+			headers=headers,
+			data=payload_json,
+			verify=bool(settings.ssl_applied),
+			timeout=(10, 60),
+		)
 		response.raise_for_status()
 		res_json = response.json()
+	except requests.exceptions.HTTPError as e:
+		body = response.text or str(e)
+		error = f"FBR returned HTTP {response.status_code}: {body}"
+		_set_fbr_response(
+			doc,
+			{
+				"custom_fbr_responsed": "Error",
+				"custom_fbr_digital_invoice_response": error,
+			},
+		)
+		frappe.throw(frappe._("FBR request failed: {0}").format(error), title=frappe._("FBR Error"))
+	except ValueError as e:
+		error = f"FBR returned invalid JSON (HTTP {response.status_code}): {response.text}"
+		_set_fbr_response(
+			doc,
+			{
+				"custom_fbr_responsed": "Error",
+				"custom_fbr_digital_invoice_response": error,
+			},
+		)
+		frappe.throw(frappe._("FBR request failed: {0}").format(error), title=frappe._("FBR Error"))
 	except requests.exceptions.RequestException as e:
-		doc.custom_fbr_responsed = "Error"
-		doc.custom_fbr_digital_invoice_response = str(e)
-		doc.save(ignore_permissions=True)
-		frappe.throw(frappe._("FBR request failed: {0}").format(str(e)), title=frappe._("FBR Error"))
-		return
+		error = str(e)
+		if getattr(e, "response", None) is not None and e.response.text:
+			error = f"{error}: {e.response.text}"
+		_set_fbr_response(
+			doc,
+			{
+				"custom_fbr_responsed": "Error",
+				"custom_fbr_digital_invoice_response": error,
+			},
+		)
+		frappe.throw(frappe._("FBR request failed: {0}").format(error), title=frappe._("FBR Error"))
 
 	frappe.logger().info(f"FBR response for {doc.name}: {json.dumps(res_json, indent=2)}")
 
@@ -165,23 +275,31 @@ def send_invoice_to_fbr(doc, method=None):
 			if status.get("invoiceNo")
 		]
 
-		doc.custom_fbr_integration_type = settings.integration_type
-		doc.custom_fbr_invoice_no = res_json.get("invoiceNumber", "")
-		doc.custom_fbr_submission_time = res_json.get("dated") or frappe.utils.now_datetime()
-		doc.custom_fbr_invoice_status = validation.get("status", "")
-		doc.custom_fbr_invoice_status_code = validation.get("statusCode", "")
-		doc.custom_fbr_invoice_error = validation.get("error", "")
-		doc.custom_fbr_invoice_statuses = json.dumps(validation.get("invoiceStatuses", []), indent=2)
-		doc.custom_fbr_invoice_item_no = ", ".join(invoice_item_nos)
-		doc.custom_fbr_qr_code = res_json.get("invoiceNumber", "")
-		doc.custom_fbr_digital_invoice_response = json.dumps(res_json, indent=2)
-		doc.custom_fbr_responsed = "Success"
-		doc.save(ignore_permissions=True)
+		_set_fbr_response(
+			doc,
+			{
+				"custom_fbr_integration_type": settings.integration_type,
+				"custom_fbr_invoice_no": res_json.get("invoiceNumber", ""),
+				"custom_fbr_submission_time": res_json.get("dated") or frappe.utils.now_datetime(),
+				"custom_fbr_invoice_status": validation.get("status", ""),
+				"custom_fbr_invoice_status_code": validation.get("statusCode", ""),
+				"custom_fbr_invoice_error": validation.get("error", ""),
+				"custom_fbr_invoice_statuses": json.dumps(validation.get("invoiceStatuses", []), indent=2),
+				"custom_fbr_invoice_item_no": ", ".join(invoice_item_nos),
+				"custom_fbr_qr_code": res_json.get("invoiceNumber", ""),
+				"custom_fbr_digital_invoice_response": json.dumps(res_json, indent=2),
+				"custom_fbr_responsed": "Success",
+			},
+		)
 		return res_json
 
-	doc.custom_fbr_responsed = "Error"
-	doc.custom_fbr_digital_invoice_response = json.dumps(res_json, indent=2)
-	doc.save(ignore_permissions=True)
+	_set_fbr_response(
+		doc,
+		{
+			"custom_fbr_responsed": "Error",
+			"custom_fbr_digital_invoice_response": json.dumps(res_json, indent=2),
+		},
+	)
 	frappe.throw(
 		frappe._("FBR rejected the invoice: {0}").format(json.dumps(res_json)),
 		title=frappe._("FBR Error"),
