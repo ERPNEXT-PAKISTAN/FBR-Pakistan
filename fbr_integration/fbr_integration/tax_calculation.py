@@ -15,6 +15,97 @@ below if your GL account labels differ from the defaults:
 """
 
 import frappe
+from erpnext.stock.get_item_details import get_item_tax_map
+from frappe.utils import flt
+
+
+def _has_further_tax(template_name):
+	return any(
+		"further tax" in (tax.tax_type or "").casefold()
+		for tax in frappe.get_all(
+			"Item Tax Template Detail", filters={"parent": template_name}, fields=["tax_type"]
+		)
+	)
+
+
+def _is_taxable_sales_template(template_name):
+	return any(
+		any(label in (tax.tax_type or "").casefold() for label in ("sales tax", "gst"))
+		for tax in frappe.get_all(
+			"Item Tax Template Detail", filters={"parent": template_name}, fields=["tax_type"]
+		)
+	)
+
+
+def _template_variant_title(title, unregistered, company):
+	if unregistered:
+		if title.endswith((" (Unregistered)", " (Unregistered + Extra)")):
+			return None
+		if title.endswith(" (Registered + Extra)"):
+			return title[: -len(" (Registered + Extra)")] + " (Unregistered + Extra)"
+		if title.endswith(" (Registered)"):
+			return title[: -len(" (Registered)")] + " (Unregistered)"
+		return f"{title} (Unregistered)"
+
+	if title.endswith(" (Unregistered + Extra)"):
+		base_title = title[: -len(" (Unregistered + Extra)")]
+		registered_extra = f"{base_title} (Registered + Extra)"
+		return registered_extra if frappe.db.exists(
+			"Item Tax Template", {"title": registered_extra, "company": company}
+		) else base_title
+	if title.endswith(" (Unregistered)"):
+		base_title = title[: -len(" (Unregistered)")]
+		registered_title = f"{base_title} (Registered)"
+		return registered_title if frappe.db.exists(
+			"Item Tax Template", {"title": registered_title, "company": company}
+		) else base_title
+	return None
+
+
+def apply_unregistered_tax_templates(doc, method=None):
+	payer_type = doc.get("custom_tax_payer_type")
+	if not payer_type and doc.get("customer"):
+		payer_type = frappe.db.get_value("Customer", doc.customer, "custom_tax_payer_type")
+	scenario_link = doc.get("custom_scenario_id")
+	scenario_id = frappe.db.get_value("Scenario ID", scenario_link, "scenario_id") or scenario_link
+	unregistered = (
+		payer_type in {"Unregistered", "Unregistered Distributor", "Retail Consumer"}
+		and scenario_id != "SN006"
+	)
+
+	for item in doc.items:
+		if not item.item_tax_template:
+			continue
+		item_is_unregistered = unregistered and "exempt" not in (item.get("custom_sale_type") or "").casefold()
+
+		template = frappe.db.get_value(
+			"Item Tax Template", item.item_tax_template, ["title", "company"], as_dict=True
+		)
+		if not template:
+			continue
+
+		if item_is_unregistered and _has_further_tax(item.item_tax_template):
+			item.item_tax_rate = get_item_tax_map(doc=doc, tax_template=item.item_tax_template, as_json=True)
+			continue
+		if item_is_unregistered and not _is_taxable_sales_template(item.item_tax_template):
+			continue
+
+		target_title = _template_variant_title(template.title, item_is_unregistered, template.company)
+		if not target_title:
+			continue
+
+		target = frappe.db.get_value(
+			"Item Tax Template", {"title": target_title, "company": template.company}, "name"
+		)
+		if target:
+			item.item_tax_template = target
+			item.item_tax_rate = get_item_tax_map(doc=doc, tax_template=target, as_json=True)
+		elif item_is_unregistered:
+			frappe.throw(
+				frappe._("No 4% further-tax template exists for {0}. Run bench migrate and check the company tax accounts.").format(
+					template.title
+				)
+			)
 
 
 def calculate_fbr_taxes(doc, method=None):
@@ -48,7 +139,11 @@ def calculate_fbr_taxes(doc, method=None):
 			tax_type = tax.tax_type or ""
 
 			# Update the tax account names below if your Chart of Accounts differs
-			if "General Sales Tax" in tax_type:
+			if (
+				"General Sales Tax" in tax_type
+				or tax_type.startswith("Sales Tax -")
+				or tax_type.startswith("GST -")
+			):
 				item.custom_sales_tax_rate = tax.tax_rate or 0
 			elif "Further Tax" in tax_type:
 				item.custom_further_tax_rate = tax.tax_rate or 0
